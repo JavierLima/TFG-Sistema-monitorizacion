@@ -1,0 +1,355 @@
+{
+  "Hostname": "javi-VirtualBox",
+  "SystemMetrics": "LinuxDebian",
+  "actualTime": "23:23:46",
+  "metrics": {
+    "latency": {
+      "minRTT": 0.011,
+      "meanRTT": 0.032,
+      "maxRTT": 0.044,
+      "mdevRTT": 0.015,
+      "packageTransmited": 3,
+      "packageReceived": 3,
+      "packageLossPercentage": 0,
+      "timeRequest": 2060
+    },
+    "cpu": {
+      "userPercentage": "0,89",
+      "nicePercentage": "0,01",
+      "systemPercentage": "0,20",
+      "iowaitPercentage": "0,03",
+      "stealPercentage": "0,00",
+      "idlePercentage": "98,87"
+    },
+    "cpusNumber": {
+      "cpusTotalNumber": 4,
+      "cpusUsageNumber": 4
+    },
+    "ioRatio": {
+      "deviceName": "sda",
+      "transfersPerSecond": "1,59",
+      "kilobytesReadsPerSecond": "9,53",
+      "kilobytesWrittenPerSecond": "21,84",
+      "kilobytesRead": 1123805,
+      "kilobytesWritten": 2574116
+    },
+    "disk": {
+      "identificatorName": "total",
+      "totalDisk": 19640182,
+      "usedDisk": 8531518,
+      "freeDisk": 10568096,
+      "usagePercentDisk": 45
+    },
+    "temperature": {
+      "degrees": 33
+    },
+    "partitions": [
+      {
+        "identificatorName": "udev",
+        "type": "devtmpfs",
+        "totalDisk": 2500660,
+        "usedDisk": 0,
+        "freeDisk": 2500660,
+        "usagePercentDisk": "0",
+        "mountPoint": "/dev"
+      },
+      {
+        "identificatorName": "tmpfs",
+        "type": "tmpfs",
+        "totalDisk": 505628,
+        "usedDisk": 1304,
+        "freeDisk": 504324,
+        "usagePercentDisk": "1",
+        "mountPoint": "/run"
+      },
+      {
+        "identificatorName": "/dev/sda1",
+        "type": "ext4",
+        "totalDisk": 10253588,
+        "usedDisk": 7716852,
+        "freeDisk": 1996168,
+        "usagePercentDisk": "80",
+        "mountPoint": "/"
+      },
+      {
+        "identificatorName": "tmpfs",
+        "type": "tmpfs",
+        "totalDisk": 2528120,
+        "usedDisk": 0,
+        "freeDisk": 2528120,
+        "usagePercentDisk": "0",
+        "mountPoint": "/dev/shm"
+      },
+      {
+        "identificatorName": "tmpfs",
+        "type": "tmpfs",
+        "totalDisk": 5120,
+        "usedDisk": 4,
+        "freeDisk": 5116,
+        "usagePercentDisk": "1",
+        "mountPoint": "/run/lock"
+      },
+      {
+        "identificatorName": "tmpfs",
+        "type": "tmpfs",
+        "totalDisk": 2528120,
+        "usedDisk": 0,
+        "freeDisk": 2528120,
+        "usagePercentDisk": "0",
+        "mountPoint": "/sys/fs/cgroup"
+      },
+      {
+        "identificatorName": "/dev/loop1",
+        "type": "squashfs",
+        "totalDisk": 4352,
+        "usedDisk": 4352,
+        "freeDisk": 0,
+        "usagePercentDisk": "100",
+        "mountPoint": "/snap/gnome-calculator/501"
+      },
+      {
+        "identificatorName": "/dev/loop3",
+        "type": "squashfs",
+        "totalDisk": 56064,
+        "usedDisk": 56064,
+        "freeDisk": 0,
+        "usagePercentDisk": "100",
+        "mountPoint": "/snap/core18/1650"
+      },
+      {
+        "identificatorName": "/dev/loop2",
+        "type": "squashfs",
+        "totalDisk": 160512,
+        "usedDisk": 160512,
+        "freeDisk": 0,
+        "usagePercentDisk": "100",
+        "mountPoint": "/snap/gnome-3-28-1804/110"
+      },
+      {
+        "identificatorName": "/dev/loop4",
+        "type": "squashfs",
+        "totalDisk": 15104,
+        "usedDisk": 15104,
+        "freeDisk": 0,
+        "usagePercentDisk": "100",
+        "mountPoint": "/snap/gnome-characters/399"
+      },
+      {
+        "identificatorName": "/dev/loop5",
+        "type": "squashfs",
+        "totalDisk": 164096,
+        "usedDisk": 164096,
+        "freeDisk": 0,
+        "usagePercentDisk": "100",
+        "mountPoint": "/snap/gnome-3-28-1804/116"
+      },
+      {
+        "identificatorName": "/dev/loop0",
+        "type": "squashfs",
+        "totalDisk": 15104,
+        "usedDisk": 15104,
+        "freeDisk": 0,
+        "usagePercentDisk": "100",
+        "mountPoint": "/snap/gnome-characters/375"
+      },
+      {
+        "identificatorName": "/dev/loop7",
+        "type": "squashfs",
+        "totalDisk": 93568,
+        "usedDisk": 93568,
+        "freeDisk": 0,
+        "usagePercentDisk": "100",
+        "mountPoint": "/snap/core/8689"
+      },
+      {
+        "identificatorName": "/dev/loop6",
+        "type": "squashfs",
+        "totalDisk": 1024,
+        "usedDisk": 1024,
+        "freeDisk": 0,
+        "usagePercentDisk": "100",
+        "mountPoint": "/snap/gnome-logs/81"
+      },
+      {
+        "identificatorName": "/dev/loop8",
+        "type": "squashfs",
+        "totalDisk": 46080,
+        "usedDisk": 46080,
+        "freeDisk": 0,
+        "usagePercentDisk": "100",
+        "mountPoint": "/snap/gtk-common-themes/1440"
+      },
+      {
+        "identificatorName": "/dev/loop9",
+        "type": "squashfs",
+        "totalDisk": 56064,
+        "usedDisk": 56064,
+        "freeDisk": 0,
+        "usagePercentDisk": "100",
+        "mountPoint": "/snap/core18/1668"
+      },
+      {
+        "identificatorName": "/dev/loop10",
+        "type": "squashfs",
+        "totalDisk": 4352,
+        "usedDisk": 4352,
+        "freeDisk": 0,
+        "usagePercentDisk": "100",
+        "mountPoint": "/snap/gnome-calculator/544"
+      },
+      {
+        "identificatorName": "/dev/loop11",
+        "type": "squashfs",
+        "totalDisk": 93568,
+        "usedDisk": 93568,
+        "freeDisk": 0,
+        "usagePercentDisk": "100",
+        "mountPoint": "/snap/core/8592"
+      },
+      {
+        "identificatorName": "/dev/loop12",
+        "type": "squashfs",
+        "totalDisk": 45312,
+        "usedDisk": 45312,
+        "freeDisk": 0,
+        "usagePercentDisk": "100",
+        "mountPoint": "/snap/gtk-common-themes/1353"
+      },
+      {
+        "identificatorName": "tmpfs",
+        "type": "tmpfs",
+        "totalDisk": 505624,
+        "usedDisk": 36,
+        "freeDisk": 505588,
+        "usagePercentDisk": "1",
+        "mountPoint": "/run/user/1000"
+      },
+      {
+        "identificatorName": "/dev/sr0",
+        "type": "iso9660",
+        "totalDisk": 58122,
+        "usedDisk": 58122,
+        "freeDisk": 0,
+        "usagePercentDisk": "100",
+        "mountPoint": "/media/javi/VBox_GAs_6.1.0"
+      }
+    ],
+    "process": [
+      {
+        "usedPercentageCpu": 0.1,
+        "pid": 2395,
+        "usedPercentageMem": 0.1,
+        "nice": 0,
+        "group": "S",
+        "user": "javi",
+        "state": "javi",
+        "start": "Mar 07",
+        "cpuTime": "00:01:58",
+        "command": "/usr/lib/ibus/ibus-engine-simple"
+      },
+      {
+        "usedPercentageCpu": 0.2,
+        "pid": 1891,
+        "usedPercentageMem": 0,
+        "nice": 0,
+        "group": "S",
+        "user": "javi",
+        "state": "javi",
+        "start": "Mar 07",
+        "cpuTime": "00:04:40",
+        "command": "/usr/bin/VBoxClient --draganddrop"
+      },
+      {
+        "usedPercentageCpu": 0.3,
+        "pid": 2144,
+        "usedPercentageMem": 0.2,
+        "nice": 0,
+        "group": "S",
+        "user": "javi",
+        "state": "javi",
+        "start": "Mar 07",
+        "cpuTime": "00:06:07",
+        "command": "ibus-daemon --panel disable -r --xim"
+      },
+      {
+        "usedPercentageCpu": 0.7,
+        "pid": 9550,
+        "usedPercentageMem": 1,
+        "nice": 0,
+        "group": "S",
+        "user": "javi",
+        "state": "javi",
+        "start": "Mar 07",
+        "cpuTime": "00:12:30",
+        "command": "/usr/libexec/gnome-terminal-server"
+      },
+      {
+        "usedPercentageCpu": 0.9,
+        "pid": 1778,
+        "usedPercentageMem": 1.9,
+        "nice": 0,
+        "group": "S",
+        "user": "javi",
+        "state": "javi",
+        "start": "Mar 07",
+        "cpuTime": "00:18:39",
+        "command": "/usr/lib/xorg/Xorg vt2 -displayfd 3 -auth /run/user/1000/gdm/Xauthority -background none -noreset -keeptty -verbose 3"
+      },
+      {
+        "usedPercentageCpu": 2.4,
+        "pid": 2059,
+        "usedPercentageMem": 8.1,
+        "nice": 0,
+        "group": "S",
+        "user": "javi",
+        "state": "javi",
+        "start": "Mar 07",
+        "cpuTime": "00:48:08",
+        "command": "/usr/bin/gnome-shell"
+      }
+    ],
+    "processesNumber": {
+      "activeProcessesNumber": 10,
+      "totalProcessesNumber": 215
+    },
+    "mem": {
+      "totalMem": 5056244,
+      "usedMem": 1058644,
+      "freeMem": 2411192,
+      "sharedMem": 24776,
+      "buffersMem": 1586408,
+      "cachedMem": 3711152,
+      "swapTotalMem": 483800,
+      "swapUsedMem": 0,
+      "swapFreeMem": 483800,
+      "totalRAM": 5540044,
+      "usedRAM": 1058644,
+      "freeRAM": 2894992
+    },
+    "systemAdditionalInfo": {
+      "systemRunningTime": "up 1 day, 8:44",
+      "usersLoggedOnNumber": 1,
+      "systemLoadAverage1M": "0,29",
+      "systemLoadAverage5M": "0,14",
+      "systemLoadAverage15M": "0,12"
+    },
+    "networkMetrics": [
+      {
+        "networkCardName": "enp0s3",
+        "MTU": 1500,
+        "IP": "192.168.1.105",
+        "netMask": "255.255.255.0",
+        "broadcastAddress": "192.168.1.255",
+        "IPv6Address": "fe80::4ad9:d5a9:14a9:7b9",
+        "MACAddress": "08:00:27:02:4e:9d",
+        "txQueueLen": 1000,
+        "connectionProtocol": "(Ethernet)",
+        "RXPackages": 183446,
+        "RXErrors": 0,
+        "TXPackages": 9108,
+        "TXErrors": 0,
+        "collisions": 0
+      }
+    ]
+  }
+}
