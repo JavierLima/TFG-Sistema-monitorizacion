@@ -1,0 +1,13 @@
+{
+  "serverIp": "192.168.1.114",
+  "port": 5005,
+  "allowedHosts": [
+    "javi-VirtualBox",
+    "8ccfca32bea8",
+    "e472acf27711",
+    "1a08eea454d9",
+    "97fcc9cca124"
+  ],
+  "buffer_size": 5096,
+  "secretPassword": "P0t4t0 c4n 1 c0nn3ct?"
+}

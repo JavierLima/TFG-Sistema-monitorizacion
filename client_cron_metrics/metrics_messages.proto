@@ -1,0 +1,171 @@
+syntax = "proto3";
+
+package TFG;
+
+
+message Message{
+  Config config = 1;
+  StartCommunication startCommunication = 2;
+  SystemMetric data = 3;
+  ACK ack = 4;
+}
+
+message Config {
+  string Hostname = 1;
+
+  enum Message_Type {
+    CLOSE_COMMUNICATION = 0;
+    METRICS = 1;
+    START_COMMUNICATION = 2;
+    ACK = 3;
+  }
+
+  Message_Type message_type = 2;
+  string ip = 3;
+  int32 port = 4;
+}
+
+message StartCommunication {
+  string password = 1;
+}
+
+message ACK {
+  string response = 1;
+}
+
+message SystemMetric {
+  string SystemMetrics = 1;
+  int64 actualTime = 2;
+  
+  message latency {
+    float minRTT = 1;
+    float meanRTT = 2;
+    float maxRTT = 3;
+    float mdevRTT = 4;
+    int32 packageTransmited = 5;
+    int32 packageReceived = 6;
+    float packageLossPercentage = 7;
+    int32 timeRequest = 8;
+    int32 clientServer = 9;
+  }
+
+  message cpu {
+    float userPercentage = 1;
+    float nicePercentage = 2;
+    float systemPercentage = 3;
+    float iowaitPercentage = 4;
+    float stealPercentage = 5;
+    float idlePercentage = 6;
+  }
+
+  message cpusNumber {
+    int32 cpusTotalNumber = 1;
+    int32 cpusUsageNumber = 2;
+  }
+
+  message ioRatio {
+    string deviceName = 1;
+    float transfersPerSecond = 2;
+    float kilobytesReadsPerSecond = 3;
+    float kilobytesWrittenPerSecond = 4;
+    int32 kilobytesRead = 5;
+    int32 kilobytesWritten = 6;
+  }
+
+  message disk {
+    string identificatorName = 1;
+    int32 totalDisk = 2;
+    int32 usedDisk = 3;
+    int32 freeDisk = 4;
+    int32 usagePercentDisk = 5;
+  }
+
+  message temperature {
+    int32 degrees = 1;
+  }
+
+  message partitions {
+    string identificatorName = 1;
+    string type = 2;
+    int32 totalDisk = 3;
+    int32 usedDisk = 4;
+    int32 freeDisk = 5;
+    int32 usagePercentDisk = 6;
+    string mountPoint = 7;
+  }
+
+  message process {
+    float usedPercentageCpu = 1;
+    int32 pid = 2;
+    float usedPercentageMem = 3;
+    int32 nice = 4;
+    string group = 5;
+    string user = 6;
+    string state = 7;
+    string start = 8;
+    string cpuTime = 9;
+    string command = 10;
+  }
+
+  message processesNumber {
+    int32 activeProcessesNumber = 1;
+    int32 totalProcessesNumber = 2;
+  }
+
+  message mem {
+    int32 totalMem = 1;
+    int32 usedMem = 2;
+    int32 freeMem = 3;
+    int32 sharedMem = 4;
+    int32 buffersMem = 5;
+    int32 cachedMem = 6;
+    int32 swapTotalMem = 7;
+    int32 swapUsedMem = 8;
+    int32 swapFreeMem = 9;
+    int32 totalRAM = 10;
+    int32 usedRAM = 11;
+    int32 freeRAM = 12;
+  }
+
+  message systemAdditionalInfo {
+    string systemRunningTime = 1;
+    int32 usersLoggedOnNumber = 2;
+    float systemLoadAverage1M = 3;
+    float systemLoadAverage5M = 4;
+    float systemLoadAverage15M = 5;
+  }
+
+  message networkMetrics {
+    string networkCardName = 1;
+    int32 MTU = 2;
+    string IP = 3;
+    string netMask = 4;
+    string broadcastAddress = 5;
+    string IPv6Address = 6;
+    string MACAddress = 7;
+    int32 txQueueLen = 8;
+    string connectionProtocol = 9;
+    int32 RXPackages = 10;
+    int32 RXErrors = 11;
+    int32 TXPackages = 12;
+    int32 TXErrors = 13;
+    int32 collisions = 14;
+  }
+
+  message Metrics {
+    latency var_latency = 1;
+    cpu var_cpu = 2;
+    cpusNumber var_cpusNumber = 3;
+    ioRatio var_ioRatio = 4;
+    disk var_disk = 5;
+    temperature var_temperature = 6;
+    repeated partitions var_partitions = 7;
+    repeated process var_process = 8;
+    processesNumber var_processesNumber = 9;
+    mem var_mem = 10;
+    systemAdditionalInfo var_systemAdditionalInfo = 11;
+    repeated networkMetrics var_networkMetrics = 12;
+  }
+
+  Metrics metrics = 3;
+}

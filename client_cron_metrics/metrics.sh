@@ -1,9 +1,10 @@
 #!/bin/bash
 mainDisk=(`df --total | grep 'total'`)
 mem=(`free --total | sed "1d"`)
-times=(`uptime`)
-cpu=(`iostat -c | tail -n 4 | head -n 1`)
-ioRatio=(`iostat -d | grep "sda"`)
+date=`date +%s%3N`
+times=(`uptime | sed 's/,/./g'`)
+cpu=(`iostat -c | tail -n 4`)
+ioRatio=(`iostat -d | grep "sda" | sed 's/,/./g'`)
 cpusUsageNumber=`lscpu --extended -b | sed "1d" | wc -l`
 cpusTotalNumber=`nproc --all`
 #!logs=`cat /var/log/syslog`
@@ -47,7 +48,7 @@ while [ $countEntries -lt $disksEntries ];do
                         partitions=''${partitions}' "freeDisk":'${disks[$iterator]}','
                 ;;
 		5)
-                        partitions=''${partitions}' "usagePercentDisk":"'${disks[$iterator]%\%}'",'
+                        partitions=''${partitions}' "usagePercentDisk":'${disks[$iterator]%\%}','
                 ;;
 		6)
                         partitions=''${partitions}' "mountPoint":"'${disks[$iterator]}'"},'
@@ -62,7 +63,6 @@ while [ $countEntries -lt $disksEntries ];do
 done;
 partitions="${partitions:0:-1}"
 partitions="${partitions}]"
-
 
 countEntries=0
 process='['
@@ -80,7 +80,12 @@ while [ $countEntries -lt $processesTableEntries ];do
                         process=''${process}' "usedPercentageMem":'${processesTable[$iterator]}','
                 ;;
                 3)
-                        process=''${process}' "nice":'${processesTable[$iterator]}','
+			if [ ${processesTable[$iterator]} == "-" ]
+                        then
+				process=''${process}' "nice":0,'
+			else
+				process=''${process}' "nice":'${processesTable[$iterator]}','
+			fi
                 ;;
                 4)
                         process=''${process}' "group":"'${processesTable[$iterator]}'",'
@@ -123,7 +128,6 @@ while [ $countEntries -lt $processesTableEntries ];do
 done;
 process="${process:0:-1}"
 process="${process}]"
-
 
 
 countEntries=0
@@ -204,25 +208,23 @@ done;
 networkMetrics="${networkMetrics:0:-1}"
 networkMetrics="${networkMetrics}]"
 
-jsonData='{"Hostname":"'$host'", "SystemMetrics":"LinuxDebian", "actualTime":"'${times[0]}'", "metrics":{ '\
+jsonData='{"Hostname":"'$host'", "SystemMetrics":"LinuxDebian", "actualTime":'${date}', "metrics":{ '\
 '"latency":{"minRTT":'$minRTT', "meanRTT":'$meanRTT', "maxRTT":'$maxRTT', "mdevRTT":'$mdevRTT', "packageTransmited":'${latencyPackageStadistics[0]}', '\
 '"packageReceived":'${latencyPackageStadistics[3]}',"packageLossPercentage":'${latencyPackageStadistics[5]%\%}', "timeRequest":'${latencyPackageStadistics[9]%\ms}'}, '\
-'"cpu":{"userPercentage":"'${cpu[0]}'", "nicePercentage":"'${cpu[1]}'", "systemPercentage":"'${cpu[2]}'", "iowaitPercentage":"'${cpu[3]}'", "stealPercentage":"'${cpu[4]}'", '\
-'"idlePercentage":"'${cpu[5]}'"}, '\
+'"cpu":{"userPercentage":'${cpu[7]}', "nicePercentage":'${cpu[8]}', "systemPercentage":'${cpu[9]}', "iowaitPercentage":'${cpu[10]}', "stealPercentage":'${cpu[11]}', '\
+'"idlePercentage":'${cpu[12]}'}, '\
 '"cpusNumber":{"cpusTotalNumber":'$cpusTotalNumber', "cpusUsageNumber":'$cpusUsageNumber'}, '\
-'"ioRatio":{"deviceName":"'${ioRatio[0]}'", "transfersPerSecond":"'${ioRatio[1]}'", "kilobytesReadsPerSecond":"'${ioRatio[2]}'", "kilobytesWrittenPerSecond":"'${ioRatio[3]}'", '\
+'"ioRatio":{"deviceName":"'${ioRatio[0]}'", "transfersPerSecond":'${ioRatio[1]}', "kilobytesReadsPerSecond":'${ioRatio[2]}', "kilobytesWrittenPerSecond":'${ioRatio[3]}', '\
 '"kilobytesRead":'${ioRatio[4]}', "kilobytesWritten":'${ioRatio[5]}'}, '\
 '"disk":{"identificatorName":"'${mainDisk[0]}'", "totalDisk":'${mainDisk[1]}', "usedDisk":'${mainDisk[2]}', "freeDisk":'${mainDisk[3]}', "usagePercentDisk":'${mainDisk[4]%\%}'}, '\
 '"temperature":{"degrees":'${temperature}'}, '\
 '"partitions":'$partitions', '\
 '"process":'$process', '\
-'"processesNumber":{"activeProcessesNumber":'$activeProcessesNumber', "totalProcessesNumber":'$totalProcessesNumber'}, '\
-'"mem":{"totalMem":'${mem[1]}', "usedMem":'${mem[2]}', "freeMem":'${mem[3]}', "sharedMem":'${mem[4]}', "buffersMem":'${mem[5]}', "cachedMem":'${mem[6]}', "swapTotalMem":'${mem[8]}', '\
-'"swapUsedMem":'${mem[9]}', "swapFreeMem":'${mem[10]}', "totalRAM":'${mem[12]}', "usedRAM":'${mem[13]}', "freeRAM":'${mem[14]}'}, '\
-'"systemAdditionalInfo":{"systemRunningTime":"'${times[1]}' '${times[2]}' '${times[3]}' '${times[4]%\,}'", "usersLoggedOnNumber":'${times[5]}', "systemLoadAverage1M":"'${times[9]%\,}'", '\
-'"systemLoadAverage5M":"'${times[10]%\,}'", "systemLoadAverage15M":"'${times[11]}'"}, '\
+'"processesNumber":{"activeProcessesNumber": '${activeProcessesNumber}', "totalProcessesNumber":'${totalProcessesNumber}'}, '\
+'"mem":{"totalMem":'${mem[1]}', "usedMem":'${mem[2]}', "freeMem":'${mem[3]}', "sharedMem":'${mem[4]}', "buffersMem":'${mem[5]}', '\
+'"cachedMem":'${mem[6]}', "swapTotalMem":'${mem[8]}', "swapUsedMem":'${mem[9]}', "swapFreeMem":'${mem[10]}', "totalRAM":'${mem[12]}', '\
+'"usedRAM":'${mem[13]}', "freeRAM":'${mem[14]}'},'\
+'"systemAdditionalInfo":{"systemRunningTime":"'${times[0]}' '${times[1]}' '${times[2]}' '${times[2]%\.}'", "usersLoggedOnNumber":'${times[5]}', "systemLoadAverage1M":'${times[9]%\.}', "systemLoadAverage5M":'${times[10]%\.}', "systemLoadAverage15M":'${times[11]}'}, '\
 '"networkMetrics":'$networkMetrics'}}'
 
-echo $jsonData
-echo $jsonData | jq . >> metricsData.json
-
+echo $jsonData | jq . > metricsData.json

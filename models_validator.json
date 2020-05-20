@@ -1,0 +1,113 @@
+{
+  "LinuxDebian": {
+    "latency": {
+      "minRTT": "float",
+      "meanRTT": "float",
+      "maxRTT": "float",
+      "mdevRTT": "float",
+      "packageTransmited": "int",
+      "packageReceived": "int",
+      "packageLossPercentage": "float",
+      "timeRequest": "int",
+      "clientServer": "int"
+    },
+    "cpu": {
+      "userPercentage": "float",
+      "nicePercentage": "float",
+      "systemPercentage": "float",
+      "iowaitPercentage": "float",
+      "stealPercentage": "float",
+      "idlePercentage": "float"
+    },
+    "cpusNumber": {
+      "cpusTotalNumber": "int",
+      "cpusUsageNumber": "int"
+    },
+    "ioRatio": {
+      "deviceName": "str",
+      "transfersPerSecond": "float",
+      "kilobytesReadsPerSecond": "float",
+      "kilobytesWrittenPerSecond": "float",
+      "kilobytesRead": "int",
+      "kilobytesWritten": "int"
+    },
+    "disk": {
+      "identificatorName": "str",
+      "totalDisk": "int",
+      "usedDisk": "int",
+      "freeDisk": "int",
+      "usagePercentDisk": "int"
+    },
+    "temperature": {
+      "degrees": "int"
+    },
+    "partitions": [
+      {
+        "identificatorName": "str",
+        "type": "str",
+        "totalDisk": "int",
+        "usedDisk": "int",
+        "freeDisk": "int",
+        "usagePercentDisk": "int",
+        "mountPoint": "str"
+      }
+    ],
+    "process": [
+      {
+        "usedPercentageCpu": "float",
+        "pid": "int",
+        "usedPercentageMem": "float",
+        "nice": "int",
+        "group": "str",
+        "user": "str",
+        "state": "str",
+        "start": "str",
+        "cpuTime": "str",
+        "command": "str"
+      }
+    ],
+    "processesNumber": {
+      "activeProcessesNumber": "int",
+      "totalProcessesNumber": "int"
+    },
+    "mem": {
+      "totalMem": "int",
+      "usedMem": "int",
+      "freeMem": "int",
+      "sharedMem": "int",
+      "buffersMem": "int",
+      "cachedMem": "int",
+      "swapTotalMem": "int",
+      "swapUsedMem": "int",
+      "swapFreeMem": "int",
+      "totalRAM": "int",
+      "usedRAM": "int",
+      "freeRAM": "int"
+    },
+    "systemAdditionalInfo": {
+      "systemRunningTime": "str",
+      "usersLoggedOnNumber": "int",
+      "systemLoadAverage1M": "float",
+      "systemLoadAverage5M": "float",
+      "systemLoadAverage15M": "float"
+    },
+    "networkMetrics": [
+      {
+        "networkCardName": "str",
+        "MTU": "int",
+        "IP": "str",
+        "netMask": "str",
+        "broadcastAddress": "str",
+        "IPv6Address": "str",
+        "MACAddress": "str",
+        "txQueueLen": "int",
+        "connectionProtocol": "str",
+        "RXPackages": "int",
+        "RXErrors": "int",
+        "TXPackages": "int",
+        "TXErrors": "int",
+        "collisions": "int"
+      }
+    ]
+  }
+}

@@ -1,0 +1,189 @@
+{
+  "Hostname": "97fcc9cca124",
+  "SystemMetrics": "LinuxDebian",
+  "actualTime": 1589992218395,
+  "metrics": {
+    "latency": {
+      "minRTT": 0.025,
+      "meanRTT": 0.049,
+      "maxRTT": 0.096,
+      "mdevRTT": 0.033,
+      "packageTransmited": 3,
+      "packageReceived": 3,
+      "packageLossPercentage": 0,
+      "timeRequest": 87
+    },
+    "cpu": {
+      "userPercentage": 13.14,
+      "nicePercentage": 0,
+      "systemPercentage": 22.22,
+      "iowaitPercentage": 0.07,
+      "stealPercentage": 0,
+      "idlePercentage": 64.57
+    },
+    "cpusNumber": {
+      "cpusTotalNumber": 2,
+      "cpusUsageNumber": 2
+    },
+    "ioRatio": {
+      "deviceName": "sda",
+      "transfersPerSecond": 3.27,
+      "kilobytesReadsPerSecond": 1.94,
+      "kilobytesWrittenPerSecond": 25.06,
+      "kilobytesRead": 378899,
+      "kilobytesWritten": 4899588
+    },
+    "disk": {
+      "identificatorName": "total",
+      "totalDisk": 1105977192,
+      "usedDisk": 365012732,
+      "freeDisk": 734681796,
+      "usagePercentDisk": 34
+    },
+    "temperature": {
+      "degrees": 33
+    },
+    "partitions": [
+      {
+        "identificatorName": "overlay",
+        "type": "overlay",
+        "totalDisk": 61255652,
+        "usedDisk": 5187396,
+        "freeDisk": 52926924,
+        "usagePercentDisk": 9,
+        "mountPoint": "/"
+      },
+      {
+        "identificatorName": "tmpfs",
+        "type": "tmpfs",
+        "totalDisk": 65536,
+        "usedDisk": 0,
+        "freeDisk": 65536,
+        "usagePercentDisk": 0,
+        "mountPoint": "/dev"
+      },
+      {
+        "identificatorName": "tmpfs",
+        "type": "tmpfs",
+        "totalDisk": 1018508,
+        "usedDisk": 0,
+        "freeDisk": 1018508,
+        "usagePercentDisk": 0,
+        "mountPoint": "/sys/fs/cgroup"
+      },
+      {
+        "identificatorName": "grpcfuse",
+        "type": "fuse.grpcfuse",
+        "totalDisk": 980279292,
+        "usedDisk": 354637940,
+        "freeDisk": 625641352,
+        "usagePercentDisk": 37,
+        "mountPoint": "/client_cron_metrics"
+      },
+      {
+        "identificatorName": "/dev/sda1",
+        "type": "ext4",
+        "totalDisk": 61255652,
+        "usedDisk": 5187396,
+        "freeDisk": 52926924,
+        "usagePercentDisk": 9,
+        "mountPoint": "/etc/hosts"
+      },
+      {
+        "identificatorName": "shm",
+        "type": "tmpfs",
+        "totalDisk": 65536,
+        "usedDisk": 0,
+        "freeDisk": 65536,
+        "usagePercentDisk": 0,
+        "mountPoint": "/dev/shm"
+      },
+      {
+        "identificatorName": "tmpfs",
+        "type": "tmpfs",
+        "totalDisk": 1018508,
+        "usedDisk": 0,
+        "freeDisk": 1018508,
+        "usagePercentDisk": 0,
+        "mountPoint": "/proc/acpi"
+      },
+      {
+        "identificatorName": "tmpfs",
+        "type": "tmpfs",
+        "totalDisk": 1018508,
+        "usedDisk": 0,
+        "freeDisk": 1018508,
+        "usagePercentDisk": 0,
+        "mountPoint": "/sys/firmware"
+      }
+    ],
+    "process": [
+      {
+        "usedPercentageCpu": 0.1,
+        "pid": 1,
+        "usedPercentageMem": 0.1,
+        "nice": 0,
+        "group": "S",
+        "user": "root",
+        "state": "root",
+        "start": "16:30:12",
+        "cpuTime": "00:00:00",
+        "command": "bash /entrypoint.sh"
+      },
+      {
+        "usedPercentageCpu": 17,
+        "pid": 7,
+        "usedPercentageMem": 1.2,
+        "nice": 0,
+        "group": "S",
+        "user": "root",
+        "state": "root",
+        "start": "16:30:17",
+        "cpuTime": "00:00:00",
+        "command": "python client.py"
+      }
+    ],
+    "processesNumber": {
+      "activeProcessesNumber": 1,
+      "totalProcessesNumber": 8
+    },
+    "mem": {
+      "totalMem": 2037016,
+      "usedMem": 991124,
+      "freeMem": 82328,
+      "sharedMem": 1452,
+      "buffersMem": 963564,
+      "cachedMem": 960424,
+      "swapTotalMem": 1048572,
+      "swapUsedMem": 1548,
+      "swapFreeMem": 1047024,
+      "totalRAM": 3085588,
+      "usedRAM": 992672,
+      "freeRAM": 1129352
+    },
+    "systemAdditionalInfo": {
+      "systemRunningTime": "16:30:18 up 2 2",
+      "usersLoggedOnNumber": 0,
+      "systemLoadAverage1M": 0.89,
+      "systemLoadAverage5M": 1,
+      "systemLoadAverage15M": 1.02
+    },
+    "networkMetrics": [
+      {
+        "networkCardName": "eth0",
+        "MTU": 1500,
+        "IP": "172.19.0.2",
+        "netMask": "255.255.0.0",
+        "broadcastAddress": "172.19.255.255",
+        "MACAddress": "02:42:ac:13:00:02",
+        "txQueueLen": 0,
+        "connectionProtocol": "(Ethernet)",
+        "RXPackages": 13,
+        "RXErrors": 0,
+        "TXPackages": 6,
+        "TXErrors": 0,
+        "collisions": 0
+      }
+    ]
+  }
+}
