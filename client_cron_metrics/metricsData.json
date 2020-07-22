@@ -1,25 +1,25 @@
 {
-  "Hostname": "97fcc9cca124",
-  "SystemMetrics": "LinuxDebian",
-  "actualTime": 1589992218395,
+  "Hostname": "c04f33d89c66",
+  "SystemMetrics": "Ubuntu",
+  "actualTime": 1591837086598,
   "metrics": {
     "latency": {
-      "minRTT": 0.025,
-      "meanRTT": 0.049,
-      "maxRTT": 0.096,
-      "mdevRTT": 0.033,
+      "minRTT": 0.029,
+      "meanRTT": 0.032,
+      "maxRTT": 0.039,
+      "mdevRTT": 0.006,
       "packageTransmited": 3,
       "packageReceived": 3,
       "packageLossPercentage": 0,
-      "timeRequest": 87
+      "timeRequest": 83
     },
     "cpu": {
-      "userPercentage": 13.14,
+      "userPercentage": 14.25,
       "nicePercentage": 0,
-      "systemPercentage": 22.22,
-      "iowaitPercentage": 0.07,
+      "systemPercentage": 23.79,
+      "iowaitPercentage": 0.14,
       "stealPercentage": 0,
-      "idlePercentage": 64.57
+      "idlePercentage": 61.82
     },
     "cpusNumber": {
       "cpusTotalNumber": 2,
@@ -27,30 +27,30 @@
     },
     "ioRatio": {
       "deviceName": "sda",
-      "transfersPerSecond": 3.27,
-      "kilobytesReadsPerSecond": 1.94,
-      "kilobytesWrittenPerSecond": 25.06,
-      "kilobytesRead": 378899,
-      "kilobytesWritten": 4899588
+      "transfersPerSecond": 8.31,
+      "kilobytesReadsPerSecond": 2.73,
+      "kilobytesWrittenPerSecond": 51.04,
+      "kilobytesRead": 353619,
+      "kilobytesWritten": 6619132
     },
     "disk": {
       "identificatorName": "total",
       "totalDisk": 1105977192,
-      "usedDisk": 365012732,
-      "freeDisk": 734681796,
-      "usagePercentDisk": 34
+      "usedDisk": 465417884,
+      "freeDisk": 634276644,
+      "usagePercentDisk": 43
     },
     "temperature": {
-      "degrees": 33
+      "degrees": 27
     },
     "partitions": [
       {
         "identificatorName": "overlay",
         "type": "overlay",
         "totalDisk": 61255652,
-        "usedDisk": 5187396,
-        "freeDisk": 52926924,
-        "usagePercentDisk": 9,
+        "usedDisk": 33270212,
+        "freeDisk": 24844108,
+        "usagePercentDisk": 58,
         "mountPoint": "/"
       },
       {
@@ -75,18 +75,18 @@
         "identificatorName": "grpcfuse",
         "type": "fuse.grpcfuse",
         "totalDisk": 980279292,
-        "usedDisk": 354637940,
-        "freeDisk": 625641352,
-        "usagePercentDisk": 37,
+        "usedDisk": 398877460,
+        "freeDisk": 581401832,
+        "usagePercentDisk": 41,
         "mountPoint": "/client_cron_metrics"
       },
       {
         "identificatorName": "/dev/sda1",
         "type": "ext4",
         "totalDisk": 61255652,
-        "usedDisk": 5187396,
-        "freeDisk": 52926924,
-        "usagePercentDisk": 9,
+        "usedDisk": 33270212,
+        "freeDisk": 24844108,
+        "usagePercentDisk": 58,
         "mountPoint": "/etc/hosts"
       },
       {
@@ -119,26 +119,26 @@
     ],
     "process": [
       {
-        "usedPercentageCpu": 0.1,
+        "usedPercentageCpu": 0.2,
         "pid": 1,
         "usedPercentageMem": 0.1,
         "nice": 0,
         "group": "S",
         "user": "root",
         "state": "root",
-        "start": "16:30:12",
+        "start": "00:57:57",
         "cpuTime": "00:00:00",
         "command": "bash /entrypoint.sh"
       },
       {
-        "usedPercentageCpu": 17,
-        "pid": 7,
-        "usedPercentageMem": 1.2,
+        "usedPercentageCpu": 7.6,
+        "pid": 12,
+        "usedPercentageMem": 1.1,
         "nice": 0,
         "group": "S",
         "user": "root",
         "state": "root",
-        "start": "16:30:17",
+        "start": "00:58:03",
         "cpuTime": "00:00:00",
         "command": "python client.py"
       }
@@ -149,36 +149,36 @@
     },
     "mem": {
       "totalMem": 2037016,
-      "usedMem": 991124,
-      "freeMem": 82328,
-      "sharedMem": 1452,
-      "buffersMem": 963564,
-      "cachedMem": 960424,
+      "usedMem": 1016592,
+      "freeMem": 100624,
+      "sharedMem": 1344,
+      "buffersMem": 919800,
+      "cachedMem": 1000580,
       "swapTotalMem": 1048572,
-      "swapUsedMem": 1548,
-      "swapFreeMem": 1047024,
+      "swapUsedMem": 780,
+      "swapFreeMem": 1047792,
       "totalRAM": 3085588,
-      "usedRAM": 992672,
-      "freeRAM": 1129352
+      "usedRAM": 1017372,
+      "freeRAM": 1148416
     },
     "systemAdditionalInfo": {
-      "systemRunningTime": "16:30:18 up 2 2",
+      "systemRunningTime": "2020-06-09 12:56:53",
       "usersLoggedOnNumber": 0,
-      "systemLoadAverage1M": 0.89,
-      "systemLoadAverage5M": 1,
-      "systemLoadAverage15M": 1.02
+      "systemLoadAverage1M": 1.13,
+      "systemLoadAverage5M": 1.26,
+      "systemLoadAverage15M": 1.25
     },
     "networkMetrics": [
       {
         "networkCardName": "eth0",
         "MTU": 1500,
-        "IP": "172.19.0.2",
+        "IP": "172.18.0.2",
         "netMask": "255.255.0.0",
-        "broadcastAddress": "172.19.255.255",
-        "MACAddress": "02:42:ac:13:00:02",
+        "broadcastAddress": "172.18.255.255",
+        "MACAddress": "02:42:ac:12:00:02",
         "txQueueLen": 0,
         "connectionProtocol": "(Ethernet)",
-        "RXPackages": 13,
+        "RXPackages": 14,
         "RXErrors": 0,
         "TXPackages": 6,
         "TXErrors": 0,

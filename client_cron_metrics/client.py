@@ -2,6 +2,7 @@ import socket
 import json
 import time
 import os
+import logging
 import metrics_messages_pb2
 
 
@@ -23,10 +24,28 @@ class Client:
         self.__connected = False
         self.__client = None
         self.__hostname = socket.gethostname()
+
+        self.__logger = logging.getLogger(self.__config["logging"]["name"])
+        self.__logger.setLevel(logging.DEBUG)  # logging.WARNING
+        formatter = logging.Formatter(self.__config["logging"]["format"])
+
+        # Add a console handler
+        log_ch = logging.StreamHandler()
+        log_ch.setLevel(logging.ERROR)
+        log_ch.setFormatter(formatter)
+
+        # Add file log handler
+        log_fh = logging.FileHandler('SystemMetrics_Client.log')
+        log_fh.setLevel(logging.DEBUG)
+        log_fh.setFormatter(formatter)
+
+        self.__logger.addHandler(log_ch)
+        self.__logger.addHandler(log_fh)
+
         self.__client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
     def connect_server(self):
-
+        self.__logger.info('[*] Iniciando el cliente: ')
         if not self.__connected:
             self.__start_communication()
 
@@ -34,14 +53,14 @@ class Client:
             if response.ack.response == "OK":
                 self.__send_metrics()
             else:
-                print("[*] Error de conexión %s:%d" % (self.__server_ip, self.__port))
+                self.__logger.error('[*] Error de conexión con: ' + self.__server_ip + ':' + str(self.__port))
         else:
             self.__send_metrics()
 
         self.__close_communication()
 
     def __start_communication(self):
-        print("[*] Estableciendo conexion con %s:%d" % (self.__server_ip, self.__port))
+        self.__logger.info('[*] Estableciendo conexion con: '+ self.__server_ip + ':' + str(self.__port))
         self.__client.connect((self.__server_ip, self.__port))
 
         message = metrics_messages_pb2.Message()
@@ -56,7 +75,7 @@ class Client:
         self.__connected = True
 
     def __close_communication(self):
-        print("[*] Finalizando conexion con %s:%d" % (self.__server_ip, self.__port))
+        self.__logger.info('[*] Finalizando conexión con: '+ self.__server_ip + ':' + str(self.__port))
 
         message = metrics_messages_pb2.Message()
         print(self.__hostname)
@@ -71,7 +90,7 @@ class Client:
         self.__connected = False
 
     def __get_server_response(self):
-        print("[*] Recibiendo respuesta del %s:%d" % (self.__server_ip, self.__port))
+        self.__logger.info('[*] Recibiendo respuesta del: ' + self.__server_ip + ':' + str(self.__port))
 
         data = self.__client.recv(self.__buffer_size)
 
@@ -81,8 +100,9 @@ class Client:
         return message
 
     def __send_metrics(self):
-        print("[*] Enviando metricas con %s:%d" % (self.__server_ip, self.__port))
+
         os.system("./metrics.sh")
+        self.__logger.info('[*] Ejecutando script para obtener las métricas')
         time.sleep(3)
         with open(self.__metrics_json_path, 'r') as json_file:
             metrics = json.load(json_file)
@@ -95,7 +115,7 @@ class Client:
         message = self.__set_protobuffer_message(message, metrics)
         print(len(message.SerializeToString()))
         print(message.SerializeToString())
-
+        self.__logger.info('[*] Enviando metricas a: ' + self.__server_ip + ':' + str(self.__port))
         self.__client.sendall(message.SerializeToString())
         time.sleep(5)
 
@@ -109,6 +129,7 @@ class Client:
         :param metrics: Metricas a setear para el mensaje utilizado por protobuffer
         :return message: El mensaje de tipo protobuffer seteado con las caracteristicas de las métricas obtenidas de un json
         """
+        self.__logger.info('[*] Seteando el mensaje con las métricas a enviar')
         message.data.SystemMetrics = metrics['SystemMetrics']
         message.data.actualTime = metrics['actualTime']
 

@@ -6,10 +6,13 @@ from modelSystemType import MetricsValidator
 import metrics_messages_pb2
 from influxdb import InfluxDBClient
 from google.protobuf.json_format import MessageToDict
+import logging
+from datetime import datetime
 #https://wiki.python.org/moin/UdpCommunication
 #https://medium.com/the-andela-way/machine-monitoring-tool-using-python-from-scratch-8d10411782fd
 
 
+lock = threading.Lock()
 class Server:
     def __init__(self, init_path_configuration, model_path_validator):
 
@@ -25,6 +28,23 @@ class Server:
         self.__port = self.__config['port']
         self.__secret_password = self.__config['secretPassword']
         self.__allowed_hosts = self.__config['allowedHosts']
+
+        self.__logger = logging.getLogger(self.__config["logging"]["name"])
+        self.__logger.setLevel(logging.DEBUG)  # logging.WARNING
+        formatter = logging.Formatter(self.__config["logging"]["format"])
+
+        # Add a console handler
+        log_ch = logging.StreamHandler()
+        log_ch.setLevel(logging.ERROR)
+        log_ch.setFormatter(formatter)
+
+        # Add file log handler
+        log_fh = logging.FileHandler('SystemMetrics_Server.log')
+        log_fh.setLevel(logging.DEBUG)
+        log_fh.setFormatter(formatter)
+
+        self.__logger.addHandler(log_ch)
+        self.__logger.addHandler(log_fh)
         self.__host_connected = []
         self.__server = None
 
@@ -35,20 +55,19 @@ class Server:
         }
 
     def start(self):
+        self.__logger.info('[*] Iniciando el servidor: ')
+
         self.__server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)  # TCP
         self.__server.bind((self.__server_ip, self.__port))
         self.__server.listen(5)
         while True:
-            print("[*] Esperando mensajes en %s:%d" % (self.__server_ip, self.__port))
+            t = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            self.__logger.info('[*] Esperando mensajes en ' + self.__server_ip + ':' + str(self.__port))
             client, addr = self.__server.accept()
 
-            #message = metrics_messages_pb2.Message()
-            #message.ParseFromString(data)
+            self.__logger.info('[*] Conexión establecida con: {}'.format(client))
 
-            print("[*] Conexión establecida con: %s" % client)
-            #method = self.__switcher_message_type.get(message.config.message_type)
-            #method(message)
-            client.settimeout(60)
+            client.settimeout(120)
             threading.Thread(target=self.listen_to_client, args=(client, addr)).start()
 
     def listen_to_client(self, client, address):
@@ -56,95 +75,106 @@ class Server:
         connected = True
         while connected:
             data = client.recv(self.__buffer_size)
+            if data:
+                message = metrics_messages_pb2.Message()
+                message.ParseFromString(data)
+                print("Mensaje recibido")
+                print(message)
+                self.__logger.info('[*] Mensaje recibido: {}'.format(message))
+                method = self.__switcher_message_type.get(message.config.message_type)
+                if message.config.message_type == 2:
 
-            message = metrics_messages_pb2.Message()
-            message.ParseFromString(data)
-
-            print("[*] Mensaje recibido: %s" % message)
-            method = self.__switcher_message_type.get(message.config.message_type)
-            if message.config.message_type == 2:
-                method(message, client)
-            else:
-                method(message)
-            if message.config.message_type == 0:
-                connected = False
+                    method(message, client)
+                else:
+                    method(message)
+                if message.config.message_type == 0:
+                    connected = False
 
     def __send_response(self, message_received, client):
-        print(self.__host_connected)
+        global lock
         if message_received.config.Hostname in self.__allowed_hosts:
-
+            lock.acquire()
             if message_received.config.Hostname not in self.__host_connected:
-
                 if message_received.startCommunication.password == self.__secret_password:
                     self.__host_connected.append(message_received.config.Hostname)
-                    print("[*] Conexion establecida con %s:%d: %s" % (message_received.config.ip,
-                                                                      message_received.config.port,
-                                                                      message_received.config.Hostname))
+                    lock.release()
+
+                    self.__logger.info('[*] Conexion establecida con ' + message_received.config.ip + ':' +
+                                        str(message_received.config.port) + ', ' + message_received.config.Hostname)
 
                     message = metrics_messages_pb2.Message()
                     message.ack.response = "OK"
+                    time.sleep(3)
                     client.send(message.SerializeToString())
-
-                    print("[*] Mensaje de confirmación enviado a %s:%d: %s" % (message_received.config.ip,
-                                                                               message_received.config.port,
-                                                                               message_received.config.Hostname))
+                    self.__logger.info('[*] Mensaje de confirmación enviado a ' + message_received.config.ip + ':' +
+                                        str(message_received.config.port) + ', ' + message_received.config.Hostname)
 
                 else:
-                    print("[*] Conexión interrumpida con %s:%d %s (clave incorrecta)" % (message_received.config.ip,
-                                                                                         message_received.config.port,
-                                                                                         message_received.config.Hostname))
+                    self.__logger.error('[*] Conexion interrumpida con ' + message_received.config.ip + ':' +
+                                        str(message_received.config.port) + ', ' + message_received.config.Hostname + ' Clave de seguridad incorrecta')
 
             else:
-                print("[*] Conexión interrumpida con %s:%d %s (ya están conectados)" % (message_received.config.ip,
-                                                                                        message_received.config.port,
-                                                                                        message_received.config.Hostname))
+                lock.release()
+                self.__logger.error('[*] Conexion interrumpida con ' + message_received.config.ip + ':' +
+                                    str(message_received.config.port) + ', ' + message_received.config.Hostname + ' Ya están conectados')
+                lock.acquire()
+                self.__host_connected.remove(message_received.config.Hostname)
+                lock.release()
 
         else:
-            print("[*] Conexion interrumpida con %s:%d %s" % (message_received.config.ip,
-                                                              message_received.config.port,
-                                                              message_received.config.Hostname))
+            self.__logger.error('[*] Conexion interrumpida con ' + message_received.config.ip + ':'+
+                                str(message_received.config.port) + ', ' + message_received.config.Hostname + ' Host no permitido')
 
     def __close_communication(self, message_received):
+        global lock
+        lock.acquire()
         if message_received.config.Hostname in self.__host_connected:
-            print("[*] Eliminada conexión con %s" % message_received.config.Hostname)
+            lock.release()
+
+            self.__logger.info('[*] Eliminada conexión con: {}'.format(message_received.config.Hostname))
+
+            lock.acquire()
             self.__host_connected.remove(message_received.config.Hostname)
+            lock.release()
         else:
-            print("[*] No existía conexión previamente con %s:%d %s" % (message_received.config.ip,
-                                                                        message_received.config.port,
-                                                                        message_received.config.Hostname))
+            lock.release()
+            self.__logger.error('[*] No existía conexión previamente con ' + message_received.config.ip + ':' +
+                                str(message_received.config.port) + ', ' + message_received.config.Hostname)
 
     def __treat_data(self, message_received):
-
+        global lock
+        lock.acquire()
         if message_received.config.Hostname in self.__host_connected:
-            print("[*]Metricas recogidas: ")
+            lock.release()
+
             #Se añade la latencia con el servidor
             message_received.data.metrics.var_latency.clientServer = int(time.time()*1000.0) - int(message_received.data.actualTime)
-            print(message_received)
+            self.__logger.info('[*] Métricas recogidas: {}'.format(message_received))
             #metrics = self.__model_validator.verify_metrics(data['message']['SystemMetrics'], data['message']['metrics'])
-            print("[*] Métricas validadas del sistema: %s" % message_received.data.SystemMetrics)
+            self.__logger.info('[*] Métricas validadas del sistema: {}'.format(message_received.data.SystemMetrics))
             #Ingestar en influx
 
             client = InfluxDBClient(host='localhost', port=8086, database='metrics')
-            print(client.get_list_database())
             if {'name': 'metrics'} not in client.get_list_database():
                 client.create_database('metrics')
                 client.create_retention_policy("Monthly", "4w", "2", database='metrics')
                 client.create_user("admin", "admin1234", admin=True)
-            print(client.get_list_measurements())
             points = self.__construct_points(MessageToDict(message_received))
-            print(points)
             try:
-                print("[*] Ingestando en la BBDD")
+                self.__logger.info('[*] Ingestando en la BBDD')
 
                 print(client.write_points(points, database='metrics', retention_policy='Monthly', time_precision='ms',
                                           batch_size=20))
+
+                self.__logger.info('[*] Se ha ingestado en la BBDD')
+                print('[*] Se ha ingestado en la BBDD ' + message_received.config.Hostname)
             except Exception:
-                print("No se ha podido insertar en la base de datos")
+                self.__logger.error('[*] No se ha podido insertar en la base de datos')
 
         else:
-            print("[*] No existía conexión previamente con %s:%d %s" % (message_received.config.ip,
-                                                                        message_received.config.port,
-                                                                        message_received.config.Hostname))
+            lock.release()
+            self.__logger.error('[*] No existía conexión previamente con ' + message_received.config.ip + ':'+
+                                str(message_received.config.port) + ', ' + message_received.config.Hostname)
 
     def __construct_points(self, message_received):
         points = []
@@ -171,16 +201,9 @@ class Server:
         return points
 
 
-
 if __name__ == '__main__':
 
-    path_configuration = "C:/Users/Javier/PycharmProjects/TFG-Sistema-monitorizacion/server_configuration.json"
-    path_model_validator = "C:/Users/Javier/PycharmProjects/TFG-Sistema-monitorizacion/models_validator.json"
+    path_configuration = "C:/Users/Javier/PycharmProjects/PruebasTFG/server_configuration.json"
+    path_model_validator = "C:/Users/Javier/PycharmProjects/PruebasTFG/models_validator.json"
     server = Server(path_configuration, path_model_validator)
     server.start()
-
-
-    #path_configuration = "C:/Users/Javier/PycharmProjects/PruebasTFG/metricData.json"
-    #with open(path_configuration, 'r') as json_file:
-        #metrics = json.load(json_file)
-    #print(metrics)

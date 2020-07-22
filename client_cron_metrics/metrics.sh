@@ -3,6 +3,7 @@ mainDisk=(`df --total | grep 'total'`)
 mem=(`free --total | sed "1d"`)
 date=`date +%s%3N`
 times=(`uptime | sed 's/,/./g'`)
+systemRunningTime=`uptime -s`
 cpu=(`iostat -c | tail -n 4`)
 ioRatio=(`iostat -d | grep "sda" | sed 's/,/./g'`)
 cpusUsageNumber=`lscpu --extended -b | sed "1d" | wc -l`
@@ -208,7 +209,7 @@ done;
 networkMetrics="${networkMetrics:0:-1}"
 networkMetrics="${networkMetrics}]"
 
-jsonData='{"Hostname":"'$host'", "SystemMetrics":"LinuxDebian", "actualTime":'${date}', "metrics":{ '\
+jsonData='{"Hostname":"'$host'", "SystemMetrics":"Ubuntu", "actualTime":'${date}', "metrics":{ '\
 '"latency":{"minRTT":'$minRTT', "meanRTT":'$meanRTT', "maxRTT":'$maxRTT', "mdevRTT":'$mdevRTT', "packageTransmited":'${latencyPackageStadistics[0]}', '\
 '"packageReceived":'${latencyPackageStadistics[3]}',"packageLossPercentage":'${latencyPackageStadistics[5]%\%}', "timeRequest":'${latencyPackageStadistics[9]%\ms}'}, '\
 '"cpu":{"userPercentage":'${cpu[7]}', "nicePercentage":'${cpu[8]}', "systemPercentage":'${cpu[9]}', "iowaitPercentage":'${cpu[10]}', "stealPercentage":'${cpu[11]}', '\
@@ -224,7 +225,7 @@ jsonData='{"Hostname":"'$host'", "SystemMetrics":"LinuxDebian", "actualTime":'${
 '"mem":{"totalMem":'${mem[1]}', "usedMem":'${mem[2]}', "freeMem":'${mem[3]}', "sharedMem":'${mem[4]}', "buffersMem":'${mem[5]}', '\
 '"cachedMem":'${mem[6]}', "swapTotalMem":'${mem[8]}', "swapUsedMem":'${mem[9]}', "swapFreeMem":'${mem[10]}', "totalRAM":'${mem[12]}', '\
 '"usedRAM":'${mem[13]}', "freeRAM":'${mem[14]}'},'\
-'"systemAdditionalInfo":{"systemRunningTime":"'${times[0]}' '${times[1]}' '${times[2]}' '${times[2]%\.}'", "usersLoggedOnNumber":'${times[5]}', "systemLoadAverage1M":'${times[9]%\.}', "systemLoadAverage5M":'${times[10]%\.}', "systemLoadAverage15M":'${times[11]}'}, '\
+'"systemAdditionalInfo":{"systemRunningTime":"'$systemRunningTime'", "usersLoggedOnNumber":'${times[-7]}', "systemLoadAverage1M":'${times[-3]%\.}', "systemLoadAverage5M":'${times[-2]%\.}', "systemLoadAverage15M":'${times[-1]}'}, '\
 '"networkMetrics":'$networkMetrics'}}'
 
 echo $jsonData | jq . > metricsData.json

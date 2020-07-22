@@ -5,9 +5,13 @@
     "javi-VirtualBox",
     "8ccfca32bea8",
     "e472acf27711",
-    "1a08eea454d9",
-    "97fcc9cca124"
+    "c04f33d89c66",
+    "raspberrypi"
   ],
   "buffer_size": 5096,
+  "logging": {
+    "format": "'%(asctime)-15s - %(levelname)s - %(message)s'",
+    "name": "/logs/SystemMetrics_Server.log"
+  },
   "secretPassword": "P0t4t0 c4n 1 c0nn3ct?"
 }

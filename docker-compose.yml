@@ -1,7 +1,7 @@
 version: "3.7"
 services:
   grafana:
-    image: grafana/grafana:5.1.0
+    image: grafana/grafana:7.0.3
     container_name: grafana
     restart: always
     ports:
@@ -37,7 +37,7 @@ networks:
     driver: bridge
     ipam:
      config:
-       - subnet: 182.18.0.0/16
+       - subnet: 178.17.22.0/24
 
 volumes:
   grafana-volume:
