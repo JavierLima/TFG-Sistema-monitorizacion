@@ -77,11 +77,11 @@ ordenadores (como la cpu, memoria ram, disco, etc) y representarlas gráficament
 \section{Objetivos del trabajo}
 Como propósito este trabajo tendrá unos objetivos a cumplir:\\
 
-\section{Aumentar mis conocientos de sistemas linux}
+\subsection{Aumentar mis conocientos de sistemas linux}
 Linux es uno de los sistemas más populares entre los desarrolladores, la consola que tiene facilita mucho la operación de esas 
 máquinas. Es por ello, que el uso de los sistemas Linux me va a ayudar al manejo de esos sistemas.\\
 
-\section{Utilizar tecnologías nuevas}
+\subsection{Utilizar tecnologías nuevas}
 La programación es muy revolucionaria, en cualquier momento aparece una aplicación nueva capaz de dejar obsoleta a otra. 
 El estar puesto en las nuevas tecnologías nos facilita el trabajo, nos permite ver las utilidades de cada herramienta y los
 beneficios que nos pueda aportar. \\
@@ -89,14 +89,14 @@ beneficios que nos pueda aportar. \\
 Este trabajo tiene un fin, obtener la salud de los sistemas monitorizados, pero en el camino nos encontremos dificultades que 
 seguramente una herramienta nos las solucione. \\
 
-\section{Modelo abstracto}
+\subsection{Modelo abstracto}
 Es un objetivo un poco pretencioso, trata de ser capaz de recibir métricas de cualquier tipo de sistema, que exista una entidad
 capaz de controlar los mensajes recibidos y almacenarlos para su tratamiento, es decir, que si en algún momento decido introducir 
 una nueva máquina en el sistema sea capaz de entender los mensajes también y almacenarlos. \\
 
-\section{Concurrencia}
+\subsection{Concurrencia}
 Es un objetivo fundamental, es necesario tener en cuenta posibles mensajes que lleguen a la vez. La concurrencia nos soluciona el 
-objetivo, tendremos que ser capaces de elaborar un sistema cuncurrente.\\
+objetivo, tendremos que ser capaces de elaborar un sistema concurrente.\\
 
 \chapter{Estado de la cuestión}
 
@@ -123,14 +123,14 @@ frecuencia.\\
 
 A continuación se mostrarán todas las tecnologías utilizadas.\\
 
-\section{Docker}
+\subsection{Docker}
 Un contenedor es una unidad de software estándar que empaqueta el código y todas sus dependencias para que la aplicación 
 se ejecute de manera rápida y confiable de un entorno informático a otro. Una imagen de contenedor Docker es un paquete 
-de software ligero, independiente y ejecutable que incluye todo lo necesario para ejecutar una aplicación: código, tiempo 
+de software, independiente, gestionable y que incluye todo lo necesario para ejecutar una aplicación: código, tiempo 
 de ejecución, herramientas del sistema, bibliotecas del sistema y configuraciones.\\
 
-Las imágenes de contenedor se convierten en contenedores en tiempo de ejecución y, en el caso de los contenedores Docker, 
-las imágenes se convierten en contenedores cuando se ejecutan en Docker Engine . Disponible para aplicaciones basadas en 
+Las imágenes de dcoker se convierten en contenedores en tiempo de ejecución y, en el caso de los contenedores Docker, 
+las imágenes se convierten en contenedores cuando se ejecutan en Docker Engine. Disponible para aplicaciones basadas en 
 Linux y Windows, el software en contenedores siempre se ejecutará igual, independientemente de la infraestructura. Los 
 contenedores aíslan el software de su entorno y aseguran que funcione de manera uniforme a pesar de las diferencias, por 
 ejemplo, entre el desarrollo y la puesta en escena.\\
@@ -173,13 +173,13 @@ Las máquinas virtuales también pueden ser lentas para arrancar.\\
 
 
 
-\section{Protocol buffers}
-Protobuffer diseñado internamente por google, es una herramienta que nos permite generar protocolos de comunicaciones o estructuras de mensajes para facilitar al usuario las comunicaciones, a través de la serialización de mensajes.
-La seralización es un proceso de codificación de un objeto en un medio de almacenamiento, como puede ser una archivo o un buffer en memoria, en ocasiones para transmitirlo a través de una conexión de red o para preservarlo entre ejecuciones 
+\subsection{Protocol buffers}
+Protobuffer diseñado internamente por Google, es una herramienta que nos permite generar protocolos de comunicaciones o estructuras de mensajes para facilitar al usuario las comunicaciones, a través de la serialización de mensajes.
+La serialización es un proceso de codificación de un objeto en un medio de almacenamiento, como puede ser una archivo o un buffer en memoria, en ocasiones para transmitirlo a través de una conexión de red o para preservarlo entre ejecuciones 
 de un programa. La serie de bytes que codifican el estado del objeto tras la serialización puede ser usada para crear un nuevo objeto, idéntico al original, tras aplicar el proceso inverso de deserialización. Además, dispone de un compilador que 
 te permite una vez hecho el esquema de la estructura de datos codificarlo en distintos lenguajes; C++, Java, python, Objective-C y con la versión proto3 se puede trabajar con: Dart, Go, Ruby y C. \\ 
 
-Según la página oficial de google, los buffers de protocolo son el mecanismo extensible de lenguaje neutral, plataforma neutral para serializar datos estructurados; como en XML, pero más pequeño, más rápido y más simple. Uno define cómo desea que se 
+Según la página oficial de Google, los buffers de protocolo son el mecanismo extensible de lenguaje neutral, plataforma neutral para serializar datos estructurados; como en XML, pero más pequeño, más rápido y más simple. Uno define cómo desea que se 
 organicen los datos una vez, luego puede usar un código fuente generado especial para escribir y leer fácilmente sus datos estructurados hacia y desde una variedad de flujos de datos y usando una variedad de idiomas. \\
 
 \begin{figure}[!h]
@@ -188,7 +188,7 @@ organicen los datos una vez, luego puede usar un código fuente generado especia
       \caption{\label{fig: Protobuffer example} Ejemplo Protobuffer}
 \end{figure}
 
-\section{Grafana}
+\subsection{Grafana}
 El proyecto Grafana fue iniciado por Torkel Ödegaard en 2014 y en los últimos años se ha convertido en uno de los proyectos de código abierto más populares en GitHub. Le permite consultar, visualizar y alertar sobre métricas y registros sin importar 
 dónde estén almacenados. \\
 
@@ -203,7 +203,7 @@ para proveedores de monitoreo en la nube como Google Stackdriver, Amazon Cloudwa
 
 Grafana Labs se enorgullece de liderar el desarrollo del proyecto Grafana, fomentando una comunidad próspera y asegurando que los clientes de Grafana Labs reciban el soporte y las características de Grafana que necesitan. \\
 
-\section{InfluxDB}
+\subsection{InfluxDB}
 InfluxDB es una base de datos de series temporales desarrollada por InfluxData. Está escrito en Go y optimizado para el almacenamiento rápido, la alta disponibilidad y la recuperación de datos de series de tiempo en campos como 
 monitoreo de operaciones, métricas de aplicaciones, datos de sensores de Internet de las cosas y análisis en tiempo real. También tiene soporte para procesar datos y ser capaz de hacer agrupaciones, reducciones, añadir campos tras realizar cálculos, para resumir es capaz de 
 hacer transformaciones sobre los datos obtenidos de las métricas a tiempo real. \\
@@ -225,7 +225,7 @@ Según Capital One, un holding bancario de Estados Unidos, InfluxDB es una base 
 Entonces, en tiempo real, se puede pronosticar y detectar anomalías. \\
 
 
-\section{PyCharm}
+\subsection{PyCharm}
 Es un IDE de python desarrollado por programadores y para programadores creado por Jet Brains, una herramienta que te facilita programar a través de: finalización de código inteligente, detección de errores de código sobre la marcha y posibles arreglos, navegación simple en proyectos, 
 integración continua con Git y mucho más. \\
 
@@ -235,7 +235,7 @@ integración continua con Git y mucho más. \\
       \caption{\label{fig: Logo Pycharm} Logo Pycharm}
 \end{figure}
 
-\section{Python}
+\subsection{Python}
 Python es un lenguaje de programación interpretado cuya filosofía hace hincapié en la legibilidad de su código. Creado por Guido van Rossum y lanzado por primera vez en 1991, sus construcciones de lenguaje y su enfoque orientado a objetos tienen como objetivo ayudar a los 
 programadores a escribir código claro y lógico para proyectos a pequeña y gran escala. Admite múltiples paradigmas de programación , incluida la programación estructurada, orientada a objetos y funcional. \\
 
@@ -246,7 +246,7 @@ programadores a escribir código claro y lógico para proyectos a pequeña y gra
 \end{figure}
 
 Es administrado por la Python Software Foundation y posee una licencia de código abierto, denominada Python Software Foundation License.\\
-\section{Ubuntu}
+\subsection{Ubuntu}
 
 Ubuntu es un sistema operativo de software libre y código abierto, una distribución de Linux basada en Debian. Actualmente corre en computadores de escritorio y servidores. Además, está orientado al usuario promedio, con un fuerte enfoque en la facilidad de uso y 
 en mejorar la experiencia del usuario.\\
@@ -260,7 +260,7 @@ en mejorar la experiencia del usuario.\\
 Ubuntu incluye lo mejor en traducción e infraestructura de accesibilidad que la comunidad de Software Libre tiene para ofrecer, para que Ubuntu pueda ser utilizado por la mayor cantidad de personas posible. Dicho sistema es gratuito, no hay una tarifa adicional 
 para la "edición empresarial", ya que está totalmente comrometido con los principios de desarrollo de código abierto; alentan a las personas a usar software de código abierto, mejorarlo y transmitirlo. \\
 
-\section{Bash}
+\subsection{Bash}
 
 Es un lenguaje de comandos y shell de Unix, te permite programar sentencias que causan acciones. En este caso lee y ejecuta comandos desde un archivo, llamado script. Cuando se inicia Bash, ejecuta los comandos en una variedad de archivos de puntos, es similar a los 
 comandos de script de shell Bash, que tienen permiso de ejecución habilitado y una directiva de intérprete como cabecera \textbf{$\#$!/bin/bash}. \\
@@ -271,7 +271,7 @@ comandos de script de shell Bash, que tienen permiso de ejecución habilitado y 
       \caption{\label{fig: Logo bash} Logo bash}
 \end{figure}
 
-\section{Nano}
+\subsection{Nano}
 Nano es un editor de texto para sistemas Unix basado en curses, que es una biblioteca para el control de terminales sobre sistemas de tipo Unix, posibilitando la construcción de una interfaz para el usuario, para aplicaciones ejecutadas en un terminal. Esta escrito en C y es un clon de Pico, 
 el editor del cliente de correo electrónico Pine. Nano trata de emular la funcionalidad y la interfaz de fácil manejo de Pico, pero sin la integración con Pine. \\
 
@@ -281,9 +281,9 @@ el editor del cliente de correo electrónico Pine. Nano trata de emular la funci
       \caption{\label{fig: Logo nano} Logo nano}
 \end{figure}
 
-\section{Git}
+\subsection{Git}
 Git es un software de control de versiones, pensando en la eficiencia y la confiabilidad del mantenimiento de versiones de aplicaciones cuando éstas tienen un gran número de archivos de código fuente. Permite que varias personas puedan trabajar en el mismo proyecto sin pisarse los unos en los otros, 
-además del control que te aporta sobre tu código, es capaz de volver a versiones anteriores del código.
+además del control que te aporta sobre tu código, es capaz de volver a versiones anteriores del código. \\
 
 \begin{figure}[!h]
    \centering
@@ -291,7 +291,39 @@ además del control que te aporta sobre tu código, es capaz de volver a version
       \caption{\label{fig: Logo git} Logo git}
 \end{figure}
 
-La comunidad utiliza con frecuencia git, hay varias variantes como gitlab o github que trabajan internamente con git, en este caso se ha utilizado github para el proceso de construcción del código.
+La comunidad utiliza con frecuencia git, hay varias variantes como gitlab o github que trabajan internamente con git, en este caso se ha utilizado github para el proceso de construcción del código.\\
+
+\begin{figure}[!h]
+   \centering
+   \includegraphics[width=1.1\textwidth]{Grafica-github-TFG}\\
+      \caption{\label{fig: Gráfica github} Gráfica del desarrollo del trabajo en github}
+\end{figure}
+
+\subsection{Visual Studio Code}
+Visual Studio Code es un editor de código fuente desarrollado por Microsoft para Windows, Linux y macOS. Incluye soporte para la depuración, control integrado de Git, resaltado de sintaxis, finalización inteligente de código, fragmentos y refactorización de código. También es personalizable, 
+por lo que los usuarios pueden cambiar el tema del editor, los atajos de teclado y las preferencias. Es gratuito y de código abierto, aunque la descarga oficial está bajo software privativo e incluye características personalizadas por Microsoft. Visual Studio Code se basa en 
+Electron, un framework que se utiliza para implementar Chromium y Node.js como aplicaciones para escritorio, que se ejecuta en el motor de diseño Blink. \\
+
+\begin{figure}[!h]
+   \centering
+   \includegraphics[width=0.8\textwidth]{Ejemplo-Visual-Studio-Code}\\
+      \caption{\label{fig: Ejemplo Visual Studio Code} Ejemplo Visual Studio Code}
+\end{figure}
+
+Se ha utilizado este editor de texto para realizar la documentación por su fácil manejo y por todas las ayudas que aporta. \\
+
+\subsection{LaTeX}
+LaTeX es un sistema de composición de textos, orientado a la creación de documentos escritos que presenten una alta calidad tipográfica. Por sus características y posibilidades, 
+es usado de forma especialmente intensa en la generación de artículos, libros científicos que incluyen, entre otros elementos, expresiones matemáticas, artículos académicos, tesis y 
+libros técnicos, dado que la calidad tipográfica de los documentos realizados en LaTeX, se considera adecuada a las necesidades de una editorial científica de primera línea, muchas de 
+las cuales ya lo emplean. \\
+
+\begin{figure}[!h]
+   \centering
+   \includegraphics[width=0.8\textwidth]{Ejemplo-LaTeX}\\
+      \caption{\label{fig: Ejemplo LaTeX} Ejemplo LaTeX}
+\end{figure}
+
 \chapter{Desarrollo del trabajo}
 Para empezar, es necesario tener claro la aspiración del trabajo, saber la salud de los sistemas, es por ello por lo que necesitamos 
 obtener las métricas de los sistemas. Para ello se ha desarrollado un script en bash capaz de obtener métricas de todo tipo: cpu, 
@@ -305,7 +337,7 @@ RAM, disco, etc e introducirlas en un archivo JSON.\\
 
 A continuación se mostrarán todas las métricas recogidas detalladamente.\\
 
-\section{Estándares de medida de las métricas}
+\section{Estándares de métricas}
 
 \hyp{} Memoria: kilobyte unidad utilizada para todas las métricas.
 
@@ -315,7 +347,7 @@ A continuación se mostrarán todas las métricas recogidas detalladamente.\\
 
 % https://www.overleaf.com/learn/latex/Paragraphs_and_new_lines
 % dsi.uclm.es/personal/AntonioBueno/ESI/monitor%20en%20linux.pdf
-\section{cpusNumber}
+\subsection{cpusNumber}
 Recogeremos el número de cpus tanto en uso como totales y así poder hacer un seguimiento al rendimiento, obtendremos los elementos con 
 los comandos nproc y lscpu. La métrica va a estar nombrada como cpusNumber y va a estar constituida por:\\
 
@@ -325,7 +357,7 @@ Nombre de la métrica: \textbf{cpusNumber}
 
 \hyp{} cpusUsageNumber: número de cpus en uso. (int)
 
-\section{cpu}
+\subsection{cpu}
 Recogeremos los porcentajes de uso de la cpu, lo obtendremos con el comando "iostat -c" (que hay que instalarse). 
 La métrica va a estar nombrada como cpu y va a estar constituida por:\\
 
@@ -343,7 +375,7 @@ Nombre de la métrica: \textbf{cpu}
 
 \hyp{} idlePercentage: porcentaje de tiempo que la CPU o las CPU estuvieron inactivas y el sistema no tenía una solicitud de I/O de disco pendiente. (float)
 
-\section{mem}
+\subsection{mem}
 La memoria RAM la obtenemos del comando free, nos centraremos tanto en la memoria RAM
 como la memoria swap. La métrica va a estar nombrada como mem y va a estar constituida por:\\
 
@@ -373,7 +405,7 @@ Nombre de la métrica: \textbf{mem}
 
 \hyp{} freeRAM: memoria RAM libre. (int)
 
-\section{disk}
+\subsection{disk}
 La memoria del disco la obtenemos del comando df \hyp{}\hyp{}total, nos centraremos en el cálculo total y dejamos a un lado el resto 
 sistema de ficheros, en un futuro se podría añadir el desglose del cálculo total. La métrica va a estar nombrada disk
 y va a estar constituida por:\\
@@ -390,7 +422,7 @@ Nombre de la métrica: \textbf{disk}
  
 \hyp{} usagePercentDisk: porcentaje de uso del disco. (int)
 
-\section{temperature}
+\subsection{temperature}
 La temperatura del sistema está mockeada, está seteada a 27 grados más un random de 0 a 11 grados 
 La métrica va a estar nombrada como temperature y va a estar constituida por:\\
   
@@ -398,7 +430,7 @@ Nombre de la métrica: \textbf{temperature}
  
 \hyp{} degrees: temperatura del pc. (int)
 
-\section{partitions}
+\subsection{partitions}
 Las particiones las obtenemos con el comando df memoria del disco la obtenemos del comando df, nos centraremos en la carpeta raíz utilizando 
 el elemento /dev/sda1 para filtrar con grep. La métrica va a estar nombrada como partitions y va a estar constituida por:\\
    
@@ -418,7 +450,7 @@ Nombre de la métrica: \textbf{partitions}
    
 \hyp{} mountPoint: localización del direcotorio de la partición. (string)
 
-\section{ioRatio}
+\subsection{ioRatio}
 El ratio de IO del disco lo obtendremos a partir del comando iostat, de donde filtraremos la salida para quedarnos con el disco principal sda.
 La métrica va a estar nombrada como ioRatio y va a estar constituida por:\\
  
@@ -438,7 +470,7 @@ porque es de tamaño indeterminado. (float)
 
 \hyp{} kilobytesWritten: El número total de kilobytes escritos. (int)
 
-\section{logs}
+\subsection{logs}
 Los logs del sistema los leeremos de archivo /var/log/syslog en nuestro sistema ubuntu.
 La métrica va a estar nombrada logs y va a estar constituida por:\\
 
@@ -452,7 +484,7 @@ Nombre de la métrica: \textbf{logs}
 
 \hyp{} message: mensaje del log. (string)
 
-\section{processesNumber}
+\subsection{processesNumber}
 Número de procesos del sistema, lo obtendremos con el comando ps, el argumento -a nos devuelve solo los 
 procesos activos, nos guardaremos el número de procesos activos y el número de procesos totales
 La métrica va a estar nombrada como processesNumber y va a estar constituida por:\\
@@ -463,7 +495,7 @@ Nombre de la métrica: \textbf{processesNumber}
  
 \hyp{} totalProcessesNumber: el número total de procesos de la máquina. (int)
 
-\section{process}
+\subsection{process}
 La tabla de procesos del sistema la obtendremos del comando ps, filtramos el comando para que nos devuelva 
 las entradas que nos interesan, que son las que tienen carga de cpu, es decir aquellas que tengan distinto de 0 el porcentaje de cpu.
 La métrica va a estar nombrada como process y va a estar constituida por:\\
@@ -493,7 +525,7 @@ El valor predeterminado de todos los procesos es 0. (int)
 \hyp{} command: descripción de la ejecución del proceso. (string)
 
 
-\section{latency}
+\subsection{latency}
 La latencia es el tiempo que lleva enviar una señal más el tiempo que lleva recibir un acuse de recibo de esa señal.
 Para calcularla utilizamos el comando ping en localhost con 3 paquetes y nos quedamos con el rtt. 
 La métrica va a estar nombrada como latency y va a estar constituida por:\\
@@ -519,7 +551,7 @@ Cuanto más alto es el número, más variable es el RTT. (float)
 
 \hyp{} clientServer: son los milisegundos que ha tardado el servidor en recibir las métricas. (int) 
 
-\section{networkMetrics}
+\subsection{networkMetrics}
 Las métricas de red que disponen las tarjetas de red del sistema las obtendremos con el comando ifconfig.
 La métrica va a estar nombrada como netWorkMetrics y va a estar constituida por:\\
   
@@ -557,7 +589,7 @@ para dispositivos más lentos con una latencia alta. (int)
 \hyp{} collisions: el valor de este campo debería ser idealmente 0. Si tiene un valor mayor que 0, podría significar que los paquetes
 están colisionando mientras atraviesan la red, una señal segura de congestión de la red. (int)
 
-\section{systemAdditionalInfo}
+\subsection{systemAdditionalInfo}
 La información adicional del sistema la obtendremos del comando uptime.
 La métrica va a estar nombrada como systemAdditionalInfo y va a estar constituida por:\\
   
@@ -628,10 +660,57 @@ ejecuta un script en bash que calcula las métricas del sistema y las introduce 
 con el servidor para que la próxima vez que vaya a mandar métricas empiece el algoritmo desde cero. \\
 \section{Protocolo de comunicaciones}
 
-Para entender el protocolo de comunicaciones, hay que entender protobuffer, una herramienta que permite programar los mensajes tal y como quieras. Protobuffer te permite setear atributos en las cabeceras, que el por detrás se encarga de 
+Para entender el protocolo de comunicaciones, hay que entender protobuffer, una herramienta que permite programar los mensajes tal y como quieras. Protobuffer te permite setear atributos en las cabeceras, que él por detrás se encarga de 
 comprimirlos y generar una estructura de datos serializada, por lo tanto una vez llegue el mensaje a su destino solo habría que deserializarlo para obtener cada métrica. \\
 
+La versión utilizada es proto3, que a diferencia de proto2 cambia la sintaxis y los campos siempre son opcionales a la hora de generar la estructura del mensaje, no permite poner campos requeridos, Google decidió eliminarlo para 
+evitar posibles fallos. Ante ello solo queda el control por parte de la aplicación, es decir, cuando se mande un mensaje se asegure de que ciertos campos hayan sido rellenados previamente. \\
 
+
+\begin{figure}[!h]
+   \centering
+   \includegraphics[width=0.8\textwidth]{ProtocolBuffer-version}\\
+      \caption{\label{fig: ProtocolBuffer version} ProtocolBuffer version}
+\end{figure}
+
+La estructura principal del mensaje se compone de 4 estructuras de mensajes distintos, de donde solo 1 es obligatoria, la configuración. \\
+
+\begin{figure}[!h]
+   \centering
+   \includegraphics[width=0.6\textwidth]{Estructura-mensaje}\\
+      \caption{\label{fig: Estructura mensaje} Estructura mensaje}
+\end{figure}
+
+Dicha configuración define que tipo de mensaje será, a través de una enumeración que mostrará si es un ACK, si es un mensaje para cerrar la comunicación, en caso contrario para crearla o un mensaje con las métricas del sistema . \\
+
+El mensaje de tipo ``Config'', dispone del hostname de quién manda el mensaje, la ip y el puerto por el cuál se comunican. La enumeración ``Message type'' identifica que tipo de mensaje es, por lo tanto aunque no ponga 
+que sean campos requeridos es necesario rellenarlo siempre que se manden mensajes entre sistemas. \\
+
+\begin{figure}[!h]
+   \centering
+   \includegraphics[width=0.5\textwidth]{Mensaje-config}\\
+      \caption{\label{fig: Configuración obligatoria del mensaje} Configuración obligatoria del mensaje}
+\end{figure}
+
+En la figura 5.5 se aprecian 3 tipos de mensajes a parte del mensaje de configuración obligatorio, dejando para el final el mensaje de tipo ``SystemMetric'', se proseguirá explicar los tipos de mensajes ``ACK'' y ``StartCommunication''. 
+Ambos tipos de mensajes solo disponen de un string como se ve en la figura 5.7, en el caso de ``StartCommunication'' la contraseña por la cuál va a permitir empezar la interacción con el servidor y en el caso de ``ACK'' el mensaje 
+de vuelta que ejecuta el servidor. \\
+
+\begin{figure}[!h]
+   \centering
+   \includegraphics[width=0.5\textwidth]{Tipos-basicos-de-mensaje}\\
+      \caption{\label{fig: Tipos básicos de mensaje} Tipos básicos de mensaje}
+\end{figure}
+
+Por último, la estructura de mensaje que dispone de las métricas, llamada ``SystemMetric'' que se puede observar en la figura 5.8. Esta estructura de mensaje dispone de un string que define el tipo de métricas que recibe: ubuntu, raspbian y 
+en el caso de que se inserten nuevos sistemas el tipo que las define; por otro lado un timestamp de la hora a la que se mandó el mensaje, dicho timestamp es obligatorio con el trato de InfluxDB, la base de datos de series temporales y finalmente todas las 
+métricas que se recogen de los clientes, dichas métricas están definidas y detalladas en el apartado 5.1 ``Estándares de métricas''. En el caso de que una métrica no se pueda recoger, se seteará al valor 0 por defecto.\\
+
+\begin{figure}[!h]
+   \centering
+   \includegraphics[width=0.5\textwidth]{Estructura-SystemMetrics}\\
+      \caption{\label{fig: Estructura SystemMetrics} Estructura SystemMetrics}
+\end{figure}
 
 \chapter{Bibliografía}
 https://pandorafms.com/blog/es/monitorizacion-de-sistemas/ \\
@@ -648,6 +727,8 @@ https://docs.latexbase.com/symbols \\
 https://www.comoinstalarlinux.com/como-usar-el-editor-nano-linux/\\
 https://es.wikipedia.org/wiki/Curses \\
 https://git-scm.com/ \\
+https://code.visualstudio.com/ \\
+https://es.wikipedia.org/wiki/LaTeX \\
 
 \chapter{Anexo}
 \listoffigures
