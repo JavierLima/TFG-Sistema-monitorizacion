@@ -77,9 +77,9 @@ ordenadores (como la cpu, memoria ram, disco, etc) y representarlas gráficament
 \section{Objetivos del trabajo}
 Como propósito este trabajo tendrá unos objetivos a cumplir:\\
 
-\subsection{Aumentar mis conocientos de sistemas linux}
+\subsection{Aumentar los conocientos de sistemas linux}
 Linux es uno de los sistemas más populares entre los desarrolladores, la consola que tiene facilita mucho la operación de esas 
-máquinas. Es por ello, que el uso de los sistemas Linux me va a ayudar al manejo de esos sistemas.\\
+máquinas, además de que en el mundo laboral son indispensables. Es por ello, que el uso de los sistemas Linux es fundamental.\\
 
 \subsection{Utilizar tecnologías nuevas}
 La programación es muy revolucionaria, en cualquier momento aparece una aplicación nueva capaz de dejar obsoleta a otra. 
@@ -100,13 +100,94 @@ objetivo, tendremos que ser capaces de elaborar un sistema concurrente.\\
 
 \chapter{Estado de la cuestión}
 
+En esta sección se analiza el estado del arte para las diferentes piezas requeridas del proyecto, además de las herramientas existentes 
+como los trabajos relacionados.\\
 
 
+\section{Marco teórico del trabajo}
+El marco teórico del trabajo describe las necesidades que dispone el trabajo, así como las nociones técnicas o científicas implicadas en el 
+trabajo.\\
+
+\subsection{Base de datos}
+Una base de datos es un conjunto de datos pertenecientes a un mismo contexto y almacenados sistemáticamente para su posterior uso. En este sentido; 
+una biblioteca puede considerarse una base de datos compuesta en su mayoría por documentos y textos impresos en papel e indexados para su consulta.\\
+
+Tras entender esto, necesitamos ir un paso más allá; nuestro sistema debe de describir el estado de los sistemas a tiempo real, es por ello que necesitamos 
+controlar los tiempos de ingesta en la base de datos, es decir saber en todo momento cuando se ha recibido el dato para que a la hora de interpretarlo 
+sea cómodo e intuitivo.\\
+
+Según los conocimientos adquiridos una base de datos en SQL sería capaz de resolver nuestro problema, solo sería necesario estructurar la base de datos en 
+función de los tiempos en los que lo reciba, pero nos obligaría a tener presente los timestamp de entrada. Ante ello, SQL nos exige un esfuerzo adicional a la hora de 
+desarrollarlo, por tanto es más recomendable escoger otro tipo de bases de datos. \\
+
+\begin{figure}[!h]
+   \centering
+   \includegraphics[width=0.7\textwidth]{Tipos-bases-datos}\\
+      \caption{\label{fig: Tipos de bases de datos} Tipos de bases de datos}
+\end{figure}
+
+Existen distintos tipos de base de datos, en la figura 3.1 se aprecian varios tipos como: distribuidas, orientadas a grafos, de red, deductivas, de series temporales, relacionales, no relacionales, etc; tras un ínfimo 
+entendimiento sobre la utilidad de ellas, se identifica que la que más nos conviene es una base de datos de series temporales, para que cada ingesta esté controlada por su 
+tiempo de entrada y así poder visualizar con mayor facilidad los campos de la base de datos. \\
 
 
+\subsection{Master/Workers (Server/Clientes)}
+La arquitectura cliente-servidor es un modelo de diseño de software en el que las tareas se reparten entre los proveedores de recursos o servicios, llamados servidores, y los demandantes, llamados clientes. Un cliente 
+realiza peticiones a otro programa, el servidor, quien le da respuesta. Esta idea también se puede aplicar a programas que se ejecutan sobre un solo ordenador, aunque es más ventajosa en un sistema operativo multiusuario 
+distribuido a través de una red de ordenadores.\\
 
+La idea principal es desarrollar un modelo con una estructura compuesta por Master/Workers siendo utilizadas las mismas metodologías que se usan en el presente. Dicho modelo debe incluir: \\
 
+\begin{itemize}
+   \item Un servidor capaz de recibir multiples peticiones y saber tratarlas (balanceo de carga).
+   \item Almacenamiento de la información.
+   \item Comunicaciones.
+   \item Disponibilidad.
+   \item Generación de logs.
+   \item Escalabilidad.
+   \item Flexibilidad de configuraciones.
+   \item Control de seguridad para empezar la comunicación con los clientes.
+   \item Control de que clientes sean capaces de conectarse al servidor.
+\end{itemize}
 
+\begin{figure}[!h]
+   \centering
+   \includegraphics[width=0.7\textwidth]{Cliente-Servidor}\\
+      \caption{\label{fig: Estructura cliente-servidor} Estructura cliente-servidor}
+\end{figure}
+
+\subsection{Recopilación de métricas}
+Actualmente existen infinidad de herramientas capaces de describir como es la salud de nuestros ordenadores, un ejemplo de ello son los plugins de telegraf que recogen métricas de todo tipo: cpu, disco, 
+memoria RAM, latencia, temperatura y muchas más. Estas herramientas funcionan de la misma manera, preguntando al ordenador, algunas con comandos más complejos y otros más sencillos, pero viendo la esencia 
+que tienen tan parecida sería posible desarrollar un script que recoja únicamente las métricas que necesitemos o incluso ir añadiendo nuevas métricas en un futuro.\\
+
+\subsection{Generación de gráficas}
+Un aspecto fundamental es la visualización de las métricas que recojamos, si en un principio existían infinidad de herramientas para obtener las métricas, estamos ante lo mismo o más herramientas para poder visualizarlas. Cabe destacar que sería posible 
+diseñar una página web capaz de representarlas a tiempo real, pero con tantas herramientas que dan la mayoría hecho no sale rentable invertir el tiempo en desarrollarlo, obviamente 
+si merece la pena intentarlo, pero en el mercado laboral ya se miden las métricas con el uso de herramientas existentes así que adaptarnos será lo más útil.\\
+
+A continuación nombraré distintas herramientas, sus puntos fuertes y cuál de ellas disponen de mayor apoyo de la comunidad.
+
+\begin{enumerate}
+   \item Cyfe: \\
+   De las más completas para crearte tu cuadro de mando avanzado. Puedes conectar un montón de fuentes diferentes y con una interfaz intuitiva. La posibilidad de redimensionar widgets rápidamente le da un plus de personalización bastante útil. 
+   \item Klipfolio: \\
+   Es una herramienta analítica que da la posibilidad de ver una comparación de datos mensual para saber lo que se podría corregir.
+   \item Clicdata: \\
+   Clicdata es mucho más que un dashboard. Quizá tenga algunas limitaciones como cuadro de mandos general, pero su capacidad para resumir y crear grandes infografias de datos, es un añadido que pocas herramientas tienen. Algo malo que tiene es su limitación de espacio, su versión gratuita solo dispone de 1 GB.
+   \item Qlik: \\
+   Qlik es otra de las herramientas de creación de dashboards más recientes que tenemos. Pese a que anteriormente se la conocía como QlikView, la nueva versión es mucho más intuitiva, ofreciendo la posibilidad de medir la experiencia de usuario en un dashboard muy visual y ameno, adaptándose a todo tipo de segmentos.
+   \item Sweetspot Intelligence: \\
+   Es una de las que mejor se han adaptado al cambio, puesto que cuenta con una versión mobile first, e incluso una para los SmartWatch, permitiendo búsquedas de KPIs por voz. 
+   Por otro lado, con Sweetspot podemos programar actualizaciones de estado e interacciones sin necesidad de estar conectados a Internet.
+   \item DashThis: \\
+   DashThis es problablemente la herramienta más amena visualmente, siendo a su vez una de las más completas, ofreciendo datos de una forma muy completa y avanzada.
+   Se actualiza periódicamente de forma automática, con su posterior envío por correo, para que no tener que estar consultando continuamente la evolución de nuestros principales KPIs.
+   \item Grafana: \\
+   Es una plataforma de análisis para la generación de dashboards. Permite consultar, visualizar, alertar y comprender las métricas sin importar dónde estén almacenadas. Su creación de paneles fomenta una cultura basada en datos, además que es la más confiada por la comunidad.
+\end{enumerate}
+
+\section{Trabajos relacionados}
 
 
 
@@ -114,6 +195,23 @@ objetivo, tendremos que ser capaces de elaborar un sistema concurrente.\\
 \chapter{Aspectos metodológicos}
 
 \section{Metodología}
+El conjunto de procedimientos racionales utilizados para alcanzar el objetivo del trabajo rige una investigación científica y una planificación de fases para el 
+desarrollo del trabajo. En esta primera fase, se necesita un estudio de los conceptos que nos ayude a alcanzar nuestro objetivo. Se trata de barajar las posibilidades existentes para desarrollar cada 
+cada una de las fases. Dichas fases se nombran a continuación:
+
+\begin{itemize}
+   \item Investigación.
+   \item Recopilación de métricas.
+   \item Desarrollo de servidores y clientes.
+   \item Ingesta en base de datos.
+   \item Generación de gráficas.
+   \item Documentación.
+\end{itemize}
+
+De forma excepcional, cabe destacar que como punto de continuidad y como procedimiento para llevar un control del trabajo de fin de grado, se ha realizado el desarrollo bajo la inclusión de la 
+metodología agile ``Scrum". Scrum es un marco de trabajo para desarrollo ágil de software que se ha expandido a otras industrias. Es un proceso en el que se aplican de manera regular un conjunto 
+de buenas prácticas para trabajar colaborativamente, en equipo y obtener el mejor resultado posible de proyectos. Aunque sea una metodología colaborativa, se ha realizado individualmente, se han organizado 
+reuniones a modo de reviews, entregas en forma de fin de sprints y planings para priorizar las tareas más importantes.\\
 
 \section{Tecnologías empleadas}
 En la actualidad hay multitud de herramientas, nos facilitan el trabajo si las conocemos y las utilizamos según el propósito de su existencia. 
@@ -614,6 +712,36 @@ Por lo tanto, es necesario desarrollar un sistema cliente-servidor, donde el ser
 y el cliente recogerlas y mandarlas. Indirectamente estos tipos de sistemas te obligan a gestionar las comunicaciones entre ellos, así que es necesario 
 hacer un protocolo de comunicaciones para que se entiendan en todo momento el servidor y los clientes.\\
 
+\section{Script en bash}
+
+Es un script capaz de recoger todas las métricas anteriormente nombradas en el apartado 5.1 ``Estándares de métricas". Bash te permite programar en función de comandos, 
+el uso de esos comandos nos obliga a seguir su orden y sintaxis, es por ello que con ciertos comandos, se ejecuta un filtrado para solo obtener las variables que necesitamos o 
+como en todos los comandos eliminar aquello que nos de ruido con la ayuda de ``grep'', ``tail'', ``sed'', ``awk'', ``cut'' o ``tr''.\\
+
+\begin{figure}[!h]
+   \centering
+   \includegraphics[width=1.2\textwidth]{Comandos-bash}\\
+      \caption{\label{fig: Comandos script en bash} Comandos script en bash}
+\end{figure}
+
+Una vez se han ejecutado los comandos que aparecen en la figura 5.2, se ejecuta un proceso de preparación de variables para su posterior inserción en un JSON, como se puede observar 
+en la figura 5.3. \\
+
+\begin{figure}[!h]
+   \centering
+   \includegraphics[width=1\textwidth]{Preparacion-variables}\\
+      \caption{\label{fig: Preparación de variables} Preparación de variables}
+\end{figure}
+
+Por último, una vez ya filtrado los comandos y preparadas las variables con un orden preestablecido, el script se encarga de insertar todo las métricas recogidas en un JSON, como se 
+puede observar en la figura 5.4. \\ 
+
+\begin{figure}[!h]
+   \centering
+   \includegraphics[width=1.2\textwidth]{Insercion-JSON}\\
+      \caption{\label{fig: Inserción de métricas en un JSON} Inserción de métricas en un JSON}
+\end{figure}
+
 \section{Servidor}
 
 El servidor está desarrollado en python, en la versión 3.7. En primer lugar, el servidor se encarga de setear su propia configuración según un json 
@@ -658,6 +786,45 @@ de un solo tipo pudiésemos. \\
 Una vez el cliente se ha seteado, se prepara para empezar la comunicación con el servidor. En primer lugar, le manda un mensaje con la contraseña y se pone a la espera de la respuesta del servidor, si todo ha ido bien 
 ejecuta un script en bash que calcula las métricas del sistema y las introduce en un JSON, una vez generado el JSON lee las métricas del archivo y crea el mensaje con ellas para mandarlas al servidor. Por último, corta la comunicación 
 con el servidor para que la próxima vez que vaya a mandar métricas empiece el algoritmo desde cero. \\
+
+\section{Generación de logs}
+Por defecto, los sistemas operativos crean múltiples logs en los que se registran y clasifican diferentes tipos de procesos. Los sistemas realizan protocolos sobre eventos de aplicaciones (programas), eventos del sistema, eventos relacionados 
+con la seguridad, eventos de configuración y eventos reenviados. Consultar la información contenida en un log puede ayudar a un administrador a solucionar problemas.\\
+
+Para llevar un mayor control sobre nuestra aplicación se han generado archivos de logs tanto para el cliente como para el servidor, esos logs son informativos, son escrituras que hacen en un fichero cuando ocurre un acción importante en el sistema. 
+Ambos ficheros de logs siguen la misma estructura, como se aprecia en la figura 5.7, está compuesto por la hora en la que ocurre, el tipo de información que es, INFO O ERROR, sus nombres son bastantes descriptivos, uno describe lo que va pasando en la aplicación 
+y el otro informa de un error y por último un mensaje descriptivo sobre lo ocurrido. Todos esos logs se van escribiendo en un fichero que podemos nombrarlo como queramos. \\
+
+\begin{figure}[!h]
+   \centering
+   \includegraphics[width=0.65\textwidth]{Formato-logs}\\
+      \caption{\label{fig: Formato de los logs} Formato de los logs}
+\end{figure}
+
+Por el lado del cliente, solo es posible que ocurra un error, que no sea capaz de conectarse con el servidor, en cambio en los logs del servidor se puede observar el porqué ha fallado, es decir los logs del cliente son mera información descriptiva, en cambio en los del servidor 
+se va especificando que fallos pueden ocasionarse. En este sistema disponemos de cinco posibles fallos: \\
+
+
+\begin{itemize}
+   \item Que no se haya podido insertar en la base de datos.
+   \item Que no exista conexión previa con el cliente, es decir que haya pasado por alto un paso.
+   \item Que el host que se intente conectar no lo tenga contemplado el servidor, que no esté en los hosts permitidos.
+   \item Que se mande un mensaje de establecer conexión cuando ya están conectados.
+   \item Que la clave de seguridad al empezar una comunicación sea incorrecta.
+\end{itemize}
+
+\begin{figure}[!h]
+   \centering
+   \includegraphics[width=0.65\textwidth]{Logs-cliente}\\
+      \caption{\label{fig: Logs del cliente} Logs del cliente}
+\end{figure}
+
+\begin{figure}[!h]
+   \centering
+   \includegraphics[width=0.8\textwidth]{Logs-server}\\
+      \caption{\label{fig: Logs del servidor} Logs del servidor}
+\end{figure}
+
 \section{Protocolo de comunicaciones}
 
 Para entender el protocolo de comunicaciones, hay que entender protobuffer, una herramienta que permite programar los mensajes tal y como quieras. Protobuffer te permite setear atributos en las cabeceras, que él por detrás se encarga de 
@@ -702,7 +869,7 @@ de vuelta que ejecuta el servidor. \\
       \caption{\label{fig: Tipos básicos de mensaje} Tipos básicos de mensaje}
 \end{figure}
 
-Por último, la estructura de mensaje que dispone de las métricas, llamada ``SystemMetric'' que se puede observar en la figura 5.8. Esta estructura de mensaje dispone de un string que define el tipo de métricas que recibe: ubuntu, raspbian y 
+Por último, la estructura de mensaje que dispone de las métricas, llamada ``SystemMetric'' que se puede observar en la figura 5.11. Esta estructura de mensaje dispone de un string que define el tipo de métricas que recibe: ubuntu, raspbian y 
 en el caso de que se inserten nuevos sistemas el tipo que las define; por otro lado un timestamp de la hora a la que se mandó el mensaje, dicho timestamp es obligatorio con el trato de InfluxDB, la base de datos de series temporales y finalmente todas las 
 métricas que se recogen de los clientes, dichas métricas están definidas y detalladas en el apartado 5.1 ``Estándares de métricas''. En el caso de que una métrica no se pueda recoger, se seteará al valor 0 por defecto.\\
 
@@ -711,6 +878,149 @@ métricas que se recogen de los clientes, dichas métricas están definidas y de
    \includegraphics[width=0.5\textwidth]{Estructura-SystemMetrics}\\
       \caption{\label{fig: Estructura SystemMetrics} Estructura SystemMetrics}
 \end{figure}
+
+\section{Generación de contenedores}
+Una vez desarrollado los puntos claves como el cliente y el servidor, pasamos a la virtualización de los mismos, esto nos permite abstraernos en la capa de la aplicación que agrupa el código 
+y las dependencias juntas. Se pueden ejecutar varios contenedores en la misma máquina y compartir el núcleo del sistema operativo con otros contenedores, cada uno de los cuales se ejecuta como 
+procesos aislados en el espacio del usuario. \\
+
+Para ello, generamos un archivo llamado ``docker-compose.yml'', dicho archivo es una herramienta que permite simplificar el uso de Docker. A partir de archivos YAML es mas sencillo crear contendores, 
+conectarlos, habilitar puertos, volumenes, etc. En vez de utilizar Docker via una serie inmemorizable de comandos bash y scripts, Docker Compose te permite mediante archivos YAML para poder instruir al 
+Docker Engine a realizar tareas, programáticamente. Y esta es la clave, la facilidad para dar una serie de instrucciones, y luego repetirlas en diferentes ambientes.\\
+
+El archivo YAML dispone de varios servicios, por lo tanto, vamos a subdividirlo en secciones para hablar sobre cada una de ellos. \\
+
+\subsection{Docker del servidor}
+
+Como se puede apreciar en la figura 5.12, el servidor dispone de unas configuraciones base que se nombraran a continuación.\\
+
+\begin{figure}[!h]
+   \centering
+   \includegraphics[width=0.8\textwidth]{Docker-server}\\
+      \caption{\label{fig: Configuración del servidor en docker} Configuración del servidor en docker}
+\end{figure}
+
+Este docker se llama ``server-metrics'' y siempre que ocurra un error interno se reiniciará el docker, esto nos permite evitar 
+tener que solucionar posibles fallos que pueda dar la aplicación, además la imagen de docker se va a construir en función de un Dockerfile (un archivo de configuración interno de Docker) como se puede observar en la figura 5.13, se trata de una configuración básica 
+por no decir sencilla, solo se encarga de generar el entorno de python donde va a trabajar, copiar archivos de configuración a la raíz de la máquina, instalar las dependencias de las librerías de python, que en este caso son las librería de influx y de ProtocolBuffer, y actualizar 
+la máquina con un update. \\ 
+
+\begin{figure}[!h]
+   \centering
+   \includegraphics[width=0.65\textwidth]{Dockerfile-server}\\
+      \caption{\label{fig: Dockerfile del servidor} Dockerfile del servidor}
+\end{figure}
+
+La imagen docker del servidor necesita que le especifiquemos un ``entrypoint'', que simplemente es un script en bash para explicarle el proceso o los procesos que se va a encargar de hacer, en este caso simplemente ejecuta el script del servidor (python server.py) que está 
+escrito en python. Asimismo, especificamos donde queremos que trabaje la máquina, es decir, en que carpeta, la carpeta ``server-metrics'' dispone de todos los archivos necesarios para que pueda trabajar el servidor sin que ocurra fallos, dichos archivos se pueden observar en la figura XXXXXXXXX.\\
+
+\begin{figure}[!h]
+   \centering
+   \includegraphics[width=0.5\textwidth]{Archivos-server}\\
+      \caption{\label{fig: Archivos del servidor} Archivos del servidor}
+\end{figure}
+
+Especificamos que este contenedor depende del de ``influxdb'' ya que no puede inicializarse este docker primero, generaría problemas de sincronización, el servidor se encarga de insertar las métricas en la base de datos, si la base de datos no está levantada aún ocasionará fallos. 
+Para concluir, en este docker se especifica un volumen, cuando un contenedor es borrado, toda la información contenida en él, desaparece, dejamos de tener almacenamiento persistente en nuestros contenedores, es decir, que no se elimine al borrar el contenedor, es necesario utilizar volúmenes de datos, 
+dichos datos en un servidor no aportan mucho, pero a la hora de recoger los logs nos interesa que no se borren.\\
+
+\subsection{Docker del cliente}
+Como se observa en la figura XXXXXXXXX, el cliente dispone de unas configuraciones base que se nombraran a continuación.\\
+
+\begin{figure}[!h]
+   \centering
+   \includegraphics[width=0.7\textwidth]{Docker-cliente}\\
+      \caption{\label{fig: Configuración del cliente en docker} Configuración del cliente en docker}
+\end{figure}
+
+Este docker se llama ``client-cron-metrics'' y siempre que ocurra un error interno se reiniciará el docker, esto nos permite evitar 
+tener que solucionar posibles fallos que pueda dar la aplicación, además la imagen de docker se va a construir en función de un Dockerfile (un archivo de configuración interno de Docker) como se puede observar en la figura XXXXXXXXX, se trata de una configuración básica 
+solo se encarga de generar el entorno de python donde va a trabajar, copiar archivos de configuración a la raíz de la máquina, instalar las dependencias de las librerías de python, que en este caso es la librería de ProtocolBuffer, instalar un par de progamas que nos ayudan a recoger métricas, y actualizar 
+la máquina con un update. \\
+
+\begin{figure}[!h]
+   \centering
+   \includegraphics[width=0.65\textwidth]{Dockerfile-cliente}\\
+      \caption{\label{fig: Dockerfile del cliente} Dockerfile del cliente}
+\end{figure}
+
+La imagen docker del cliente necesita que le especifiquemos un ``entrypoint'', que simplemente es un script en bash para explicarle el proceso o los procesos que se va a encargar de hacer, en este caso simplemente ejecuta el script del cliente (python client.py) que está 
+escrito en python. Asimismo, especificamos donde queremos que trabaje la máquina, es decir, en que carpeta, la carpeta ``client-cron-metrics'' dispone de todos los archivos necesarios para que pueda trabajar el servidor sin que ocurra fallos, dichos archivos se pueden observar en la figura XXXXXXXXX.\\
+
+\begin{figure}[!h]
+   \centering
+   \includegraphics[width=0.5\textwidth]{Archivos-cliente}\\
+      \caption{\label{fig: Archivos del cliente} Archivos del cliente}
+\end{figure}
+
+Especificamos que este contenedor depende del de ``server-metrics'' ya que no puede inicializarse este docker primero, generaría problemas de comunicación, el cliente se comunica con el servidor, si mandamos un mensaje desde el cliente antes de que se inicie el servidor ocurriría un timeout y perderíamos esa primera comunicación. 
+Para concluir, en este docker se especifica un volumen, cuando un contenedor es borrado, toda la información contenida en él, desaparece, dejamos de tener almacenamiento persistente en nuestros contenedores, es decir, que no se elimine al borrar el contenedor, es necesario utilizar volúmenes de datos, 
+dichos datos en un cliente no aportan mucho, pero a la hora de recoger los logs nos interesa que no se borren.\\
+
+\subsection{Docker de la base de datos}
+Como se observa en la figura XXXXXXXXX, la base de datos dispone de unas configuraciones base que se nombraran a continuación.\\
+
+\begin{figure}[!h]
+   \centering
+   \includegraphics[width=0.7\textwidth]{Docker-influxdb}\\
+      \caption{\label{fig: Configuración de la base de datos en docker} Configuración de la base de datos en docker}
+\end{figure}
+
+El docker de InfluxDB dispone de las configuraciones más básicas, se especifica la versión de la imagen que queremos tener, en este caso la última, como solo queremos almacenar datos la versión no resulta tan importante como lo podría ser si fuésemos a generar campos calculados a partir de variables. Asimismo, le ponemos un nombre al contenedor y un 
+hostname, este hostname no nos servirá para comunicarnos desde el servidor ya que en la configuración le hemos dicho que pertenece a una red interna, por lo que si quisiéramos comunicarnos con la base de datos tiene que ser a través de la red que se llama monitoring por el puerto que seteamos por defecto el 8086, de dicha red hablaremos más adelante. En 
+el caso de que falle la base de datos, esta se reiniciará como método de contención ya que le pusimos un restart ``on-failure''. Además, se han seteado unas variables de entorno para garantizar el acceso a la base de datos como se observa en la imagen. Por último, la base de datos necesita un volumen para no perder ningún dato, la persistencia en las bases de 
+datos es fundamental y más cuando disponemos de ingestas cada dos minutos.\\
+
+Cabe destacar que el script del proceso del servidor es el que se encarga de generar la política de retención en la primera inserción que se haga, en este caso mensual, cada 30 días se van eliminando los datos recogidos, en el caso de que queramos aumentar o disminuir el tiempo de retención se podrían crear nuevas políticas. \\
+
+\begin{figure}[!h]
+   \centering
+   \includegraphics[width=0.9\textwidth]{Configuración-BBDD}\\
+      \caption{\label{fig: Configuración de la base de datos en su inicio} Configuración de la base de datos en su inicio}
+\end{figure}
+\subsection{Docker del visualizador de gráficas}
+Como se observa en la figura XXXXXXXXX, el visualizador de gráficas dispone de unas configuraciones base que se nombraran a continuación.\\
+
+\begin{figure}[!h]
+   \centering
+   \includegraphics[width=0.7\textwidth]{Docker-grafana}\\
+      \caption{\label{fig: Configuración de Grafana en docker} Configuración de Grafana en docker}
+\end{figure}
+
+El docker de Grafana dispone de las configuración más básica, se especifica la versión de la imagen que queremos tener. Asimismo, le ponemos un nombre al contenedor y en el caso de que falle Grafana, esta se reiniciará como método de contención ya que le pusimos un restart ``on-failure''.
+Grafana se aloja en una red interna llamada monitoring, la cuál se hablará en este mismo apartado en una subsección distinta, además hay una conversión de puertos, Grafana por defecto se setea en el puerto 3000 pero se ha hecho una conversión al puerto 4000 ya que el 3000 ya estaba siendo 
+utilizado por otra aplicación. Por último, se dispone de un volúmen para mantener la persistencia, puede parecer inútil en esta aplicación, pero si quisiéramos cambiar la versión de Grafana por una más reciente o estable perderíamos todos los dashboards realizados. \\
+\subsection{Volúmenes}
+
+Docker como servicio gestiona por si solo la persistencia de la información de una manera muy simple, cada imágen y contenedor que tengamos en nuestro equipo se conservarán hasta que los borremos. En cada contenedor creado tendremos asociado un ``volúmen'' en nuestro equipo real donde se almacenarán 
+los ficheros que copiemos a ese contenedor. Existen tres maneras distintas de gestionar espacios para contenedores, dos de ellas serán persistentes (volume o bind volume) y la tercera no (TMPFS temporal file system). Al decir que ``no es persistente'' queremos decir que cuando un contenedor se apague todos los 
+ficheros almacenados en esa carpeta se borrarán y en cada corrida del contenedor comenzaremos con ese espacio vacío. \\
+
+Un volúmen es la manera sencilla y predefinida para almacenar todos los ficheros (salvo unas pocas excepciones) de un contenedor, usará el espacio de nuestro equipo real y en ``/var/lib/docker/volumes'' creará una carpeta para cada contenedor. En este trabajo se harán dos volúmenes como recursos externos, 
+lo que significa que ya se ha definido en Docker, en este caso mediante la consola de comandos con un create volume, como se observa en la figura XXXXXXXXXXX.\\
+
+\begin{figure}[!h]
+   \centering
+   \includegraphics[width=0.7\textwidth]{Docker-volumes}\\
+      \caption{\label{fig: Configuración de los volúmenes en docker} Configuración de los volúmenes en docker}
+\end{figure}
+
+\subsection{Redes internas}
+De forma predeterminada, Docker-Compose configura una única red para su aplicación. Cada contenedor que de un servicio se une a la red predeterminada y es accesible para otros contenedores en esa red y detectable por ellos con un nombre de host idéntico al nombre del contenedor.\\
+En lugar de simplemente usar la red de aplicaciones predeterminada, se puede especificar las propias redes con la palabra clave ``networks'' que abstrae la red predeterminada a una de nivel superior .Esto permite crear topologías más complejas y especificar opciones y controladores de red personalizados. 
+También puede usarse para conectar servicios a redes creadas externamente que no son administradas por Docker-Compose. \\
+
+En este caso como se ve en la figura XXXXXXXXX, se ha creado una red interna llamada monitoring que sirva como puente entre los contenedores, configurada con una máscara de red constituida por un rango de 24 que implica que puedan conectarse 255 máquinas.\\
+
+\begin{figure}[!h]
+   \centering
+   \includegraphics[width=0.7\textwidth]{Docker-networks}\\
+      \caption{\label{fig: Configuración de las redes en docker} Configuración de las redes en docker}
+\end{figure}
+
+\section{Estudio de gráficas}
+
+\chapter{Conclusiones}
 
 \chapter{Bibliografía}
 https://pandorafms.com/blog/es/monitorizacion-de-sistemas/ \\
@@ -729,6 +1039,11 @@ https://es.wikipedia.org/wiki/Curses \\
 https://git-scm.com/ \\
 https://code.visualstudio.com/ \\
 https://es.wikipedia.org/wiki/LaTeX \\
+https://www.ticportal.es/glosario-tic/base-datos-database \\
+https://www.40defiebre.com/mejores-herramientas-dashboard-analitica-web \\
+https://dockertips.com/utilizando-docker-compose \\
+https://dockertips.com/volumenes \\
+https://docs.docker.com/compose/networking/ \\
 
 \chapter{Anexo}
 \listoffigures

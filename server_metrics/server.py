@@ -2,7 +2,6 @@ import socket
 import threading
 import json
 import time
-from modelSystemType import MetricsValidator
 import metrics_messages_pb2
 from influxdb import InfluxDBClient
 from google.protobuf.json_format import MessageToDict
@@ -14,7 +13,7 @@ from datetime import datetime
 
 lock = threading.Lock()
 class Server:
-    def __init__(self, init_path_configuration, model_path_validator):
+    def __init__(self, init_path_configuration):
 
         with open(init_path_configuration, 'r') as json_file:
             self.__config = json.load(json_file)
@@ -22,7 +21,6 @@ class Server:
         print("[*] Configuración del servidor: ")
         print(self.__config)
 
-        self.__model_validator = MetricsValidator(model_path_validator)
         self.__server_ip = self.__config['serverIp']
         self.__buffer_size = self.__config['buffer_size']
         self.__port = self.__config['port']
@@ -154,7 +152,7 @@ class Server:
             self.__logger.info('[*] Métricas validadas del sistema: {}'.format(message_received.data.SystemMetrics))
             #Ingestar en influx
 
-            client = InfluxDBClient(host='localhost', port=8086, database='metrics')
+            client = InfluxDBClient(host='178.17.22.1', port=8086, database='metrics')
             if {'name': 'metrics'} not in client.get_list_database():
                 client.create_database('metrics')
                 client.create_retention_policy("Monthly", "4w", "2", database='metrics')
@@ -203,7 +201,6 @@ class Server:
 
 if __name__ == '__main__':
 
-    path_configuration = "C:/Users/Javier/PycharmProjects/PruebasTFG/server_configuration.json"
-    path_model_validator = "C:/Users/Javier/PycharmProjects/PruebasTFG/models_validator.json"
-    server = Server(path_configuration, path_model_validator)
+    path_configuration = "/server_metrics/server_configuration.json"
+    server = Server(path_configuration)
     server.start()

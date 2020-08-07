@@ -3,7 +3,7 @@ services:
   grafana:
     image: grafana/grafana:7.0.3
     container_name: grafana
-    restart: always
+    restart: on-failure
     ports:
       - 4000:3000
     networks:
@@ -11,15 +11,24 @@ services:
     volumes:
       - grafana-volume:/var/lib/grafana
   influxdb:
-    image: influxdb:1.7.10
+    image: influxdb:latest
     container_name: influxdb
-    restart: always
+    hostname: influxdb
+    restart: on-failure
     ports:
       - 8086:8086
     networks:
       - monitoring
     volumes:
       - influxdb-volume:/var/lib/influxdb
+    environment:
+      - INFLUXDB_DB=metrics
+      - INFLUXDB_ADMIN_USER=admin
+      - INFLUXDB_ADMIN_PASSWORD=admin1234
+      - INFLUXDB_USER=admin2
+      - INFLUXDB_PASSWORD=admin1234
+      - INFLUXDB_HTTP_AUTH_ENABLED=false
+      - INFLUXDB_HTTP_READINESS_TIMEOUT=30
   client_cron_metrics:
     restart: always
     build:
@@ -31,7 +40,21 @@ services:
     working_dir: /client_cron_metrics/
     volumes:
       - ./client_cron_metrics:/client_cron_metrics
-
+    depends_on:
+      - server_metrics
+  server_metrics:
+    restart: always
+    build:
+      context: .
+      dockerfile: ./config/server/Dockerfile
+    container_name: server_metrics
+    entrypoint:
+        - /entrypoint.sh
+    working_dir: /server_metrics/
+    volumes:
+      - ./server_metrics:/server_metrics
+    depends_on:
+      - influxdb
 networks:
   monitoring:
     driver: bridge
