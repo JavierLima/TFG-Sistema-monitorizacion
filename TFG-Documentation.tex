@@ -28,6 +28,7 @@
 \end{titlepage}
 
 \tableofcontents{}
+\listoffigures
 \newpage
 
 \chapter{Abstract}
@@ -189,15 +190,81 @@ A continuación nombraré distintas herramientas, sus puntos fuertes y cuál de 
 
 \section{Trabajos relacionados}
 
+Una de las partes más importantes en la infraestructura es la monitorización, es por ello que es necesario una investigación previa de las monitorizaciones existentes en el mercado. Destacan en su mayoría por generar un end to end donde el cliente solo necesite 
+identificar que es lo que quiere monitorizar y como lo quiere hacer. Para ello existen diversas opciones.
+
+\subsection{Prometheus}
+
+Prometheus es un sistema de monitorización y de alerta open source creado en 2012 por la compañía SoundCloud. En su principio fue revolucionaria hasta tal punto que hoy en día se sigue utilizando en grandes empresas. Su utilidad se basa en registrar métricas en tiempo 
+real en una base de datos de series de tiempo construida usando un modelo de extracción HTTP, que es un estilo de comunicación de red en el que la solicitud inicial de datos se origina en el cliente y luego es respondida por el servidor. \\
+
+El ecosistema de Prometheus consiste de varios componentes:
+
+\begin{itemize}
+   \item Un servidor para consultar y almacenar las series de datos.
+   \item Un \textit{Pushgateway} (una vía de enlace para las métricas) para permitir que los trabajos expongan sus métricas a Prometheus.
+   \item Un sistema de manejo de alarmado. 
+\end{itemize}
+
+Prometheus básicamente almacena todos los datos como series de tiempo. Cada serie de tiempo se identifica de forma única por su nombre identificativo y un conjunto de pares clave-valor, también conocidos como ``labels''. \\
+
+\begin{figure}[!h]
+   \centering
+   \includegraphics[width=0.9\textwidth]{Estructura-Prometheus}\\
+      \caption{\label{fig: Estructura de Prometheus} Estructura de Prometheus}
+\end{figure}
+
+Además esta herramienta dispone de distintos tipos de métricas que son las siguientes:
+
+\begin{itemize}
+   \item \textbf{Counter}: es una métrica acumulativa que representa un solo contador cuyo valor puede solamente incrementar o reiniciar a cero.
+   \item \textbf{Gauge}: es una métrica que representa un solo valor numeral que puede arbitrariamente subir o bajar.
+   \item \textbf{Histogram}: muestrea las observaciones y las cuenta en categorías configurables. También proporciona una suma de todos los valores observados.
+\end{itemize}
+
+\subsection{Datadog}
+
+Datadog es un servicio de monitorización para aplicaciones en la nube, que proporciona monitorización de servidores, bases de datos, herramientas y servicios, a través de una plataforma de análisis de datos basada en ``Software como Servicio'' 
+(un modelo de distribución de software donde el soporte lógico y los datos que maneja se alojan en servidores de una compañía, una TIC, al que se accede por internet). \\
+
+Datadog ayuda a los desarrolladores y equipos de operaciones a ver su infraestructura completa (nube, servidores, aplicaciones, servicios, métricas y más) en un solo lugar. Esto incluye cuadros de mando interactivos en tiempo 
+real que pueden personalizarse para las necesidades específicas de un equipo, capacidades de búsqueda de texto completo para métricas y eventos, herramientas de intercambio y discusión para que los equipos puedan colaborar utilizando 
+los conocimientos que surjan, alertas específicas para problemas críticos y acceso a API para acomodar infraestructuras únicas. \\
+
+\begin{figure}[!h]
+   \centering
+   \includegraphics[width=0.9\textwidth]{Arquitectura-Datadog}\\
+      \caption{\label{fig: Arquitectura de Datadog} Arquitectura de Datadog}
+\end{figure}
+
+Datadog también se integra con varias herramientas de software de nube, empresa y desarrollador listas para usar, por lo que los flujos de trabajo establecidos del equipo no se modificarán ni se interrumpirán al adoptar el servicio de Datadog.\\
+
+\subsection{Graphite}
+
+En cierto modo, Graphite es más simple que Prometheus, con menos funciones y una simple razón de ser. Según su propia documentación, hace precisamente dos cosas: \\
+
+\begin{enumerate}
+   \item Almacenar datos numéricos de series de tiempo.
+   \item Representar gráficos de estos datos.
+\end{enumerate}
 
 
+Aunque Graphite no recopila por el usuario, hay un componente, un demonio Twisted(es un marco de programación de red impulsado por eventos, escrito en Python y con licencia de MIT) llamado Carbon, que escucha pasivamente datos de series 
+de tiempo. Los datos se almacenan en una biblioteca simple llamada Whisper(similar en diseño a RDD, los datos se almacenan en una base de datos circular basada en búfer). Finalmente, los gráficos se pueden renderizar bajo demanda a través de una 
+aplicación web Django simple. \\
+
+\begin{figure}[!h]
+   \centering
+   \includegraphics[width=0.9\textwidth]{Arquitectura-Graphite}\\
+      \caption{\label{fig: Arquitectura de Graphite} Arquitectura de Graphite}
+\end{figure}
 
 \chapter{Aspectos metodológicos}
 
 \section{Metodología}
 El conjunto de procedimientos racionales utilizados para alcanzar el objetivo del trabajo rige una investigación científica y una planificación de fases para el 
-desarrollo del trabajo. En esta primera fase, se necesita un estudio de los conceptos que nos ayude a alcanzar nuestro objetivo. Se trata de barajar las posibilidades existentes para desarrollar cada 
-cada una de las fases. Dichas fases se nombran a continuación:
+desarrollo del proyecto. Se necesita un estudio de los conceptos que nos ayude a alcanzar nuestro objetivo. Se trata de barajar las posibilidades existentes para desarrollar cada 
+una de las fases, las cuáles son:
 
 \begin{itemize}
    \item Investigación.
@@ -209,9 +276,9 @@ cada una de las fases. Dichas fases se nombran a continuación:
 \end{itemize}
 
 De forma excepcional, cabe destacar que como punto de continuidad y como procedimiento para llevar un control del trabajo de fin de grado, se ha realizado el desarrollo bajo la inclusión de la 
-metodología agile ``Scrum". Scrum es un marco de trabajo para desarrollo ágil de software que se ha expandido a otras industrias. Es un proceso en el que se aplican de manera regular un conjunto 
+metodología ``agile Scrum". Scrum es un marco de trabajo para desarrollo ágil de software que se ha expandido a otras industrias. Es un proceso en el que se aplican de manera regular un conjunto 
 de buenas prácticas para trabajar colaborativamente, en equipo y obtener el mejor resultado posible de proyectos. Aunque sea una metodología colaborativa, se ha realizado individualmente, se han organizado 
-reuniones a modo de reviews, entregas en forma de fin de sprints y planings para priorizar las tareas más importantes.\\
+reuniones a modo de reviews, entregas en forma de fin de sprints y plannings para priorizar las tareas más importantes.\\
 
 \section{Tecnologías empleadas}
 En la actualidad hay multitud de herramientas, nos facilitan el trabajo si las conocemos y las utilizamos según el propósito de su existencia. 
@@ -278,7 +345,7 @@ de un programa. La serie de bytes que codifican el estado del objeto tras la ser
 te permite una vez hecho el esquema de la estructura de datos codificarlo en distintos lenguajes; C++, Java, python, Objective-C y con la versión proto3 se puede trabajar con: Dart, Go, Ruby y C. \\ 
 
 Según la página oficial de Google, los buffers de protocolo son el mecanismo extensible de lenguaje neutral, plataforma neutral para serializar datos estructurados; como en XML, pero más pequeño, más rápido y más simple. Uno define cómo desea que se 
-organicen los datos una vez, luego puede usar un código fuente generado especial para escribir y leer fácilmente sus datos estructurados hacia y desde una variedad de flujos de datos y usando una variedad de idiomas. \\
+organicen los datos una vez, luego puede usar un código fuente generado especial para escribir y leer fácilmente sus datos estructurados hacia y desde una variedad de flujos de datos y usando una variedad de lenguajes. \\
 
 \begin{figure}[!h]
    \centering
@@ -437,11 +504,12 @@ A continuación se mostrarán todas las métricas recogidas detalladamente.\\
 
 \section{Estándares de métricas}
 
-\hyp{} Memoria: kilobyte unidad utilizada para todas las métricas.
-
-\hyp{} Tiempo: milisegundos(preguntar por mbps).
-
-\hyp{} Temperatura: grados celcius.
+Tambíen cabe destacar que se ha seguido un orden para recoger las medidas, todas siguen el siguiente estándar según el tipo de medida que sean:
+\begin{itemize}
+   \item Memoria: kilobyte unidad utilizada para todas las métricas.
+   \item Tiempo: milisegundos.
+   \item Temperatura: grados celcius.
+\end{itemize}
 
 % https://www.overleaf.com/learn/latex/Paragraphs_and_new_lines
 % dsi.uclm.es/personal/AntonioBueno/ESI/monitor%20en%20linux.pdf
@@ -821,7 +889,7 @@ se va especificando que fallos pueden ocasionarse. En este sistema disponemos de
 
 \begin{figure}[!h]
    \centering
-   \includegraphics[width=0.8\textwidth]{Logs-server}\\
+   \includegraphics[width=1\textwidth]{Logs-server}\\
       \caption{\label{fig: Logs del servidor} Logs del servidor}
 \end{figure}
 
@@ -1007,20 +1075,199 @@ lo que significa que ya se ha definido en Docker, en este caso mediante la conso
 
 \subsection{Redes internas}
 De forma predeterminada, Docker-Compose configura una única red para su aplicación. Cada contenedor que de un servicio se une a la red predeterminada y es accesible para otros contenedores en esa red y detectable por ellos con un nombre de host idéntico al nombre del contenedor.\\
-En lugar de simplemente usar la red de aplicaciones predeterminada, se puede especificar las propias redes con la palabra clave ``networks'' que abstrae la red predeterminada a una de nivel superior .Esto permite crear topologías más complejas y especificar opciones y controladores de red personalizados. 
+
+En lugar de simplemente usar la red de aplicaciones predeterminada, se puede especificar las propias redes con la palabra clave ``networks'' que abstrae la red predeterminada a una de nivel superior. Esto permite crear topologías más complejas y especificar opciones y controladores de red personalizados. 
 También puede usarse para conectar servicios a redes creadas externamente que no son administradas por Docker-Compose. \\
 
 En este caso como se ve en la figura XXXXXXXXX, se ha creado una red interna llamada monitoring que sirva como puente entre los contenedores, configurada con una máscara de red constituida por un rango de 24 que implica que puedan conectarse 255 máquinas.\\
 
 \begin{figure}[!h]
    \centering
-   \includegraphics[width=0.7\textwidth]{Docker-networks}\\
+   \includegraphics[width=0.55\textwidth]{Docker-networks}\\
       \caption{\label{fig: Configuración de las redes en docker} Configuración de las redes en docker}
 \end{figure}
 
 \section{Estudio de gráficas}
 
+Tras elaborar todo el sistema, se necesita que de un solo vistazo seamos capaces de entender el comportamiento de las máquinas. Con el uso de grafana logramos ese objetivo, ya que permite hacer consultas a InfluxDB para visualizar las métricas ingestadas a tiempo real. A continuación se evidenciarán en secciones 
+las gráficas realizadas según el tipo de métrica que es, como se observa en la figura XXXX. \\ 
+
+\begin{figure}[!h]
+   \centering
+   \includegraphics[width=0.9\textwidth]{Estructura-graficas}\\
+      \caption{\label{fig: Estructura de las graficas en Grafana} Estructura de las graficas en Grafana}
+\end{figure}
+
+Además, Grafana permite filtrar por hostnames, así cuando quieras ver la salud de uno de ellos sea más fácil.\\
+\subsection{CPU}
+
+\begin{figure}[!h]
+   \centering
+   \includegraphics[width=0.9\textwidth]{Grafica-CPU}\\
+      \caption{\label{fig: Gráfica de la CPU} Gráfica de la CPU}
+\end{figure}
+
+\begin{itemize}
+   \item \textbf{Descripción}: como se observa en la figura XXXX, se aprecia el porcentaje de uso de la CPU. 
+   \item \textbf{Consulta}: SELECT last(``userPercentage'') FROM ``Monthly''.``Cpu'' WHERE \$timeFilter GROUP BY time(2m), ``hostname''
+\end{itemize}
+
+
+\subsection{DISK}
+
+\begin{figure}[!h]
+   \centering
+   \includegraphics[width=1\textwidth]{Grafica-DISK}\\
+      \caption{\label{fig: Gráfica del disco duro} Gráfica del disco duro}
+\end{figure}
+
+\begin{itemize}
+   \item \textbf{Descripción}: como se observa en la figura XXXX, se aprecia el porcentaje de uso del disco duro. 
+   \item \textbf{Consulta}: SELECT last(``usagePercentDisk'') FROM ``Monthly''.``Disk'' WHERE \$timeFilter GROUP BY time(2m), ``hostname'' fill(null)
+\end{itemize}
+
+\subsection{RAM}
+
+\begin{figure}[!h]
+   \centering
+   \includegraphics[width=1\textwidth]{Grafica-RAM}\\
+      \caption{\label{fig: Gráfica de la RAM} Gráfica de la RAM}
+\end{figure}
+
+\begin{itemize}
+   \item \textbf{Descripción}: como se observa en la figura XXXX, se aprecia la memoria RAM libre del sistema.
+   \item \textbf{Consulta}: SELECT last(``freeRAM'') FROM ``Monthly''.``Mem'' WHERE \$timeFilter GROUP BY time(2m), ``hostname'' fill(null)
+\end{itemize}
+
+\subsection{Procesos}
+
+\begin{figure}[!h]
+   \centering
+   \includegraphics[width=1\textwidth]{Grafica-PROCESOS}\\
+      \caption{\label{fig: Tabla de procesos corriendo} Tabla de procesos corriendo}
+\end{figure}
+
+\begin{itemize}
+   \item \textbf{Descripción}: como se observa en la figura XXXX, se aprecian todos los procesos que estén corriendo en las máquinas.
+   \item \textbf{Consulta}: SELECT last(``command'') AS ``command'', last(``cpuTime'') AS ``cpuTime'', last(``group'') AS ``group'', last(``pid'') AS ``pid'', last(``start'') AS ``process start'', last(``state'') AS ``state'', last(``usedPercentageCpu'') AS ``usedPercentageCpu'', last(``usedPercentageMem'') AS ``usedPercentageMem'', last(``user'') AS ``user'' FROM ``Monthly''.``Process'' WHERE \$timeFilter and time > now()-1m GROUP BY time(2m), ``hostname'' fill(null)
+\end{itemize}
+
+\subsection{Temperatura}
+
+\begin{figure}[!h]
+   \centering
+   \includegraphics[width=1\textwidth]{Grafica-TEMPERATURA-ACTUAL}\\
+      \caption{\label{fig: Gauge de temperatura actual} Gauge de temperatura actual}
+\end{figure}
+
+\begin{itemize}
+   \item \textbf{Descripción}: como se observa en la figura XXXX, se aprecia un ``Gauge''(medida de Grafana) que indica la temperatura actual de las máquinas.
+   \item \textbf{Consulta}: SELECT last(``degrees'') AS ``degrees'' FROM ``Monthly''.``Temperature'' WHERE \$timeFilter GROUP BY time(\$\textunderscore\textunderscore interval), ``hostname''
+\end{itemize}
+
+\begin{figure}[!h]
+   \centering
+   \includegraphics[width=1\textwidth]{Grafica-TEMPERATURA-MAX}\\
+      \caption{\label{fig: Mapa de calor de las temperaturas máximas} Mapa de calor de las temperaturas máximas}
+\end{figure}
+
+\begin{itemize}
+   \item \textbf{Descripción}: como se observa en la figura XXXX, se aprecia un ``Stat''(medida de Grafana, un mapa de calor) que indica la temperatura máxima alcanzada de las máquinas.
+   \item \textbf{Consulta}: SELECT max(``degrees'') AS ``degrees'' FROM ``Monthly''.``Temperature'' WHERE \$timeFilter GROUP BY time(2m), ``hostname''
+\end{itemize}
+
+\subsection{Latencia}
+
+\begin{figure}[!h]
+   \centering
+   \includegraphics[width=1\textwidth]{Tabla-LATENCIA}\\
+      \caption{\label{fig: Tabla de latencias} Tabla de latencias}
+\end{figure}
+
+\begin{itemize}
+   \item \textbf{Descripción}: como se observa en la figura XXXX, se ve la latencia que producen los sistemas en la misma red local mediante pings con el servidor.
+   \item \textbf{Consulta}: SELECT last(``maxRTT'') AS ``maxRTT'', last(``minRTT'') AS ``minRTT'', last(``meanRTT'') AS ``meanRTT'', last(``packageReceived'') AS ``packageReceived'', last(``packageTransmited'') AS ``packageTransmited'', last(``timeRequest'') AS ``timeRequest(ms)'' FROM ``Monthly''.``Latency'' WHERE \$timeFilter and Time > now() - 1m GROUP BY time(2m), ``hostname'' fill(null)
+\end{itemize}
+
+\subsection{Tarjetas de red}
+
+\begin{figure}[!h]
+   \centering
+   \includegraphics[width=1\textwidth]{Grafica-tarjetas-de-red}\\
+      \caption{\label{fig: Tabla con las tarjetas de red} Tabla con las tarjetas de red}
+\end{figure}
+
+\begin{itemize}
+   \item \textbf{Descripción}: como se observa en la figura XXXX, se ven las tarjetas de red de cada sistema.
+   \item \textbf{Consulta}: SELECT last(``networkCardName'') AS ``networkCardName'', last(``IP'') AS ``IP'', last(``netMask'') AS ``netMask'', last(``MTU'') AS ``MTU'', last(``broadcastAddress'') AS ``broadcastAddress'', last(``MACAddress'') AS ``MACAddress'', last(``connectionProtocol'') AS ``connectionProtocol'', last(``RXPackages'') AS ``RXPackages'', last(``TXPackages'') AS ``TXPackages'' FROM ``Monthly''.``NetworkMetrics'' WHERE \$timeFilter  and time > now()-1m GROUP BY time(2m), ``hostname'' fill(null)
+\end{itemize}
+
+\subsection{Ratio de entrada y salida}
+
+\begin{figure}[!h]
+   \centering
+   \includegraphics[width=1\textwidth]{Grafica-IORATIO-escritos}\\
+      \caption{\label{fig: Gráfica con la media de kilobytes escritos por segundo} Gráfica con la media de kilobytes escritos por segundo}
+\end{figure}
+
+\begin{itemize}
+   \item \textbf{Descripción}: como se observa en la figura XXXX, se identifica una gráfica que describe la media de kilobytes escritos por segundo en un período de tiempo.
+   \item \textbf{Consulta}: SELECT mean(``kilobytesWrittenPerSecond'') FROM ``Monthly''.``IoRatio'' WHERE \$timeFilter GROUP BY time(2m), ``hostname'' fill(null)
+\end{itemize}
+
+\begin{figure}[!h]
+   \centering
+   \includegraphics[width=1\textwidth]{Grafica-IORATIO-leidos}\\
+      \caption{\label{fig: Gráfica con la media de kilobytes leídos por segundo} Gráfica con la media de kilobytes leídos por segundo}
+\end{figure}
+
+\begin{itemize}
+   \item \textbf{Descripción}: como se observa en la figura XXXX, se identifica una gráfica que describe la media de kilobytes leídos por segundo en un período de tiempo.
+   \item \textbf{Consulta}: SELECT mean(``kilobytesReadsPerSecond'') FROM ``Monthly''.``IoRatio'' WHERE \$timeFilter GROUP BY time(2m), ``hostname'' fill(null)
+\end{itemize}
+
+
+\begin{figure}[!h]
+   \centering
+   \includegraphics[width=1\textwidth]{Grafica-LATENCIA}\\
+      \caption{\label{fig: Gráfica paquetes transmitidos por la interfaz de red} Gráfica paquetes transmitidos por la interfaz de red}
+\end{figure}
+
+\begin{itemize}
+   \item \textbf{Descripción}: como se observa en la figura XXXX, se aprecia los paquetes transmitidos por la interfaz de red de cada sistema.
+   \item \textbf{Consulta}: SELECT last(``TXPackages'') FROM ``Monthly''.``NetworkMetrics'' WHERE \$timeFilter GROUP BY time(2m), ``hostname''
+\end{itemize}
+
+\subsection{Particiones}
+
+\begin{figure}[!h]
+   \centering
+   \includegraphics[width=1\textwidth]{Grafica-PARTICIONES}\\
+      \caption{\label{fig: Tabla con las particiones} Tabla con las particiones}
+\end{figure}
+
+\begin{itemize}
+   \item \textbf{Descripción}: como se observa en la figura XXXX, se aprecia las particiones existentes en cada sistema.
+   \item \textbf{Consulta}: SELECT last(``identificatorName'') AS ``identificatorName'', last(``mountPoint'') AS ``mountPoint'', last(``type'') AS ``type'', last(``totalDisk'') AS ``totalDisk'', last(``usedDisk'') AS ``usedDisk'', last(``freeDisk'') AS ``freeDisk'', last(``usagePercentDisk'') AS ``usagePercentDisk'' FROM ``Monthly''.``Partitions'' WHERE \$timeFilter and time > now()-1m GROUP BY time(2m), ``hostname'' fill(null)
+\end{itemize}
+
+\subsection{Información adicional del sistema}
+
+\begin{figure}[!h]
+   \centering
+   \includegraphics[width=1\textwidth]{Grafica-informacion-adicional}\\
+      \caption{\label{fig: Tabla con información adicional del sistema } Tabla con información adicional del sistema}
+\end{figure}
+
+\begin{itemize}
+   \item \textbf{Descripción}: como se observa en la figura XXXX, se ve información adicional del sistema, concretamente la hora de arranque de los ordenadores.
+   \item \textbf{Consulta}: SELECT last(``systemRunningTime'') FROM ``Monthly''. ``SystemAdditionalInfo'' WHERE \$timeFilter and Time>now() -1m GROUP BY time(2m), ``hostname''
+\end{itemize}
+
 \chapter{Conclusiones}
+
+Primará la claridad de exposición, el rigor en el desarrollo de las ideas y la concreción de la escritura. Junto con el capítulo de Introducción, al que debe dar respuesta, este capìtulo debería poder leerse con autonomía del resto del documento. Debe incluir sugerencias sobre trabajos futuros que pudiesen continuar con el trabajo iniciado en el TFG.
+\chapter{Referencias}
 
 \chapter{Bibliografía}
 https://pandorafms.com/blog/es/monitorizacion-de-sistemas/ \\
@@ -1044,7 +1291,17 @@ https://www.40defiebre.com/mejores-herramientas-dashboard-analitica-web \\
 https://dockertips.com/utilizando-docker-compose \\
 https://dockertips.com/volumenes \\
 https://docs.docker.com/compose/networking/ \\
+https://grafana.com/docs/grafana/latest/features/datasources/elasticsearch/templating \\
+https://grafana.com/docs/grafana/latest/variables/templates-and-variables/ \\
+https://www.paradigmadigital.com/dev/puedo-prometer-y-prometheus/ \\
+https://logz.io/blog/prometheus-vs-graphite/ \\
+https://www.datadoghq.com/ \\
+https://graphiteapp.org/ \\
 
 \chapter{Anexo}
-\listoffigures
+
+\begin{itemize}
+   \item 
+\end{itemize}
+
 \end{document}
