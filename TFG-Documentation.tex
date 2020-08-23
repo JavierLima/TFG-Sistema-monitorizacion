@@ -1266,7 +1266,27 @@ Además, Grafana permite filtrar por hostnames, así cuando quieras ver la salud
 
 \chapter{Conclusiones}
 
-Primará la claridad de exposición, el rigor en el desarrollo de las ideas y la concreción de la escritura. Junto con el capítulo de Introducción, al que debe dar respuesta, este capìtulo debería poder leerse con autonomía del resto del documento. Debe incluir sugerencias sobre trabajos futuros que pudiesen continuar con el trabajo iniciado en el TFG.
+Se ha desarrollado el proyecto según los objetivos propuestos y se han adquirido conocimientos en mayor profundidad sobre los sistemas y la monitorización de ellos. No obstante, este proyecto es mejorable, se dispone de un sistema básico capaz de entender el rendimiento de los sistemas, con el uso de herramientas externas que nos benefician en nuestro propósito. Necesitará un trabajo posterior 
+para adecuarlo mejor a la utilidad deseada. En cambio, cabe destacar, que en su conjunto y desde el punto de vista de ingenería, el desarrollo de las distintas clases y piezas del sistema, se han hecho con la intención de que sean modulares, con poco acoplamiento y máxima cohesión.\\
+ 
+Hoy en día la salud de los ordenadores nos aporta un punto de visión mas amplio sobre lo que podemos hacer o no con dichas máquinas. Es vital que haya un control sobre las posibles incidencias que ocurren en ellas, el monitorizarlas es un plus necesario. Las empresas en la actualidad tienen su propio departamento para tratarlas, desarrollan aplicaciones y una vez terminadas 
+se da la instrucción de monitorizar las máquinas en las que se encuentre la aplicación. Es decir, ya la aplicación debe contar con un control de errores, pero no tiene porque haber fallado la aplicación, ante eso solo queda bajar un nivel y entender que está sucediendo internamente.\\
+
+Otro factor importante es la toma de decisiones, él tener monitorizado las máquinas con anterioridad te permite preveer posibles incidencias, abaratar costes y tiempo. Te aporta un conocimiento detallado del rendimiento, además de estar todo supervisado por un técnico se pueden añadir alarmas que hagan que no esté tan pendiente de posibles picos de explotación.\\
+\section{Posibles mejoras}
+
+Este proyecto es superable, como se ha visto en el desarrollo del trabajo, monitorizar es algo necesario, por lo cuál podríamos ampliar nuestro abanico de máquinas. Al ser un sistema concurrente, él introducir una tercera máquina no sería un gran costo, en cambio, ambos clientes son sistemas Linux, es por ello que sería necesario desarrollar un script para Windows que 
+genere las mismas métricas anteriormente comentadas. Al utilizar protobuffer, necesitaríamos compilar el sistema de comunicaciones para Windows y con ello tendríamos una clase autogenerada que nos permita realizar comunicaciones entre sistemas Linux y Windows.\\
+
+Otro punto a mejorar, es la posibilidad de introducir otro nuevos tipos de sistemas, un ejemplo de ello es arduino. En este caso, sería más costoso generar las comunicaciones ya que protobuffer no nos permite autogenerar clases con estos tipos de sistemas, aunque se podría generar un script capaz de sustituir la clase autogenerada de comunicaciones. Si incluyesemos estos 
+tipos de sistemas podríamos incluso monitorizar con sensores, por ejemplo: la humedad relativa o la temperatura del ambiente en el que se encuentre el servidor. \\
+
+Algo llamativo es que se monitorice los clientes pero no el servidor. El servidor al encontrarse en un contenedor, él medir la cpu, la memoria RAM y todas las métricas anteriormente nombradas no tendría sentido, ya que los contenedores fueron creados con la idea de que el uso sea con el mínimo de recursos posibles, además de que las medidas obtenidas nos engañarían, ya que 
+utilizarían un porcentaje de uso del contenedor no de la máquina real. No obstante, seguramente haya métricas que solo generen los contenedores, es por ello que se debería hacer una investigación sobre todas las medidas que nos proporciona un contenedor y que el servidor se encargue de ingestar las métricas necesarias.\\ 
+
+Por último, ya que se observa que se puede medir el rendimiento del servidor, se podría medir también el rendimiento de la base de datos(InfluxDB) y el visualizador de gráficas(Grafana) que están corriendo en contenedores distintos. Deberían tener un comportamiento parecido a los clientes; mandar mensajes continuos al servidor, éste se encargue de ingestar todas las métricas 
+y Grafana poder visualizarlas.\\
+
 \chapter{Referencias}
 
 \chapter{Bibliografía}
