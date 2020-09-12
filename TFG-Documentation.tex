@@ -67,11 +67,11 @@ determinar si las degradaciones o interrupciones de servicio se deben a la propi
 de diagnóstico para descartar de forma rápida posibles orígenes. \\
 
 \section{Planteamiento del problema}
-Todo este tiempo en la universidad hemos desarrollado código para generar valor con aplicacones o scripts, pero ¿cómo medimos 
+Todo este tiempo en la universidad hemos desarrollado código para generar valor con aplicaciones o scripts, pero ¿cómo medimos 
 el rendimiento del sistema realmente?. Imaginemos que tenemos varias aplicaciones funcionando en una máquina, ¿como 
 podríamos saber si es posible ejecutar una nueva aplicación dentro del sistema?. Machmon, es un proyecto para poder valorar la salud de 
 un sistema, consiste en recoger métricas que nos aporten información sobre la salud de los
-ordenadores (como la cpu, memoria ram, disco, etc) y representarlas gráficamente para sacar conclusiones sobre sus estados. \\
+ordenadores (como la CPU, memoria RAM, disco, etc) y representarlas gráficamente para sacar conclusiones sobre sus estados. \\
 
 
 
@@ -91,8 +91,8 @@ Este trabajo tiene un fin, obtener la salud de los sistemas monitorizados, pero 
 seguramente una herramienta nos las solucione. \\
 
 \subsection{Modelo abstracto}
-Trata de ser capaz de recibir métricas de cualquier tipo de sistema, que exista una entidad(un servidor) capaz de controlar los mensajes recibidos y almacenarlos 
-para su tratamiento, sin necesidad de depender del tipo de sistema que sea(Windows, Linux o Mac), es decir, que si en algún momento se decide introducir 
+Trata de ser capaz de recibir métricas de cualquier tipo de sistema, que exista una entidad (un servidor) capaz de controlar los mensajes recibidos y almacenarlos 
+para su tratamiento, sin necesidad de depender del tipo de sistema que sea (Windows, Linux o Mac), es decir, que si en algún momento se decide introducir 
 una nueva máquina en el sistema sea capaz de entender los mensajes también y almacenarlos. \\
 
 \subsection{Concurrencia}
@@ -281,10 +281,7 @@ de buenas prácticas para trabajar colaborativamente, en equipo y obtener el mej
 reuniones a modo de reviews, entregas en forma de fin de sprints y plannings para priorizar las tareas más importantes.\\
 
 \section{Tecnologías empleadas}
-En la actualidad hay multitud de herramientas, facilitan el trabajo si se conocen y se utilizan según el propósito de su existencia. 
-Aunque se nombren muchas herramientas a continuación, existen muchas otras que también podían haber sido de utilidad, un ejemplo de ello es "Prometheus" 
-que no se llega a utilizar en este trabajo, pero su función de recoger métricas se hubiese adaptado muy bien, además de que en el mundo laboral se utiliza con 
-frecuencia.\\
+En la actualidad hay multitud de herramientas, facilitan el trabajo si se conocen y se utilizan según el propósito de su existencia. \\
 
 A continuación se mostrarán todas las tecnologías utilizadas.\\
 
@@ -828,12 +825,12 @@ entrante (a través de una línea bloqueante que nos la da la líbrería "socket
 otro cliente quiera comunicarse con el servidor podrá dicho servidor lanzar otro thread para que se comuniquen. Además cada conexión entrante tiene un timeout, es decir solo podrán 
 comunicarse por un período de tiempo, en este caso 120 segundos. \\
 
-El servidor dispone de 3 funcionalidades; que solo la utilizan los threads. Cuando un thread es creado se pone a la escucha de nuevos mensajes, en donde solo hay 3 posibles mensajes: un mensaje 
-de respuesta que da el servidor para avisar a los clientes de que la primera comunicación a ido bien, un segundo mensaje que contiene las métricas, por lo tanto cada thread trata dichas métricas 
-y las almacena en una base de datos de series de tiempo llamada InfluxDB y por último un mensaje para cercionarse de que se cierran las conexiones con los clientes. Siempre ocurre el mismo algoritmo, 
-el cliente en primera instancia se dispone a comunicarse con el servidor, le manda un mensaje con la contraseña anteriormente vista y si coincide el servidor le manda un respuesta de que todo ha ido 
-bien, el cliente al recibir dicho mensaje le manda las métricas al servidor, una vez recibidas el servidor las parsea y las almacena en InfluxDB con un timestamp, por último si todo ha ido correctamente 
-el cliente le manda un mensaje al servidor pàra cerrar la comunicación. \\ 
+El servidor dispone de un bucle infinito que funciona como una espera activa hasta que llegue un mensaje, esto derivará en la creación de un thread para encargarse de la comunicación. Cuando un thread 
+es creado se pone a la escucha de nuevos mensajes, en donde solo hay 3 posibles mensajes: un mensaje de respuesta que da el servidor para avisar a los clientes de que la primera comunicación ha ido bien, 
+un segundo mensaje que contiene las métricas, por lo tanto cada thread trata dichas métricas y las almacena en una base de datos de series de tiempo llamada InfluxDB y por último un mensaje para cercionarse 
+de que se cierran las conexiones con los clientes. Siempre ocurre el mismo algoritmo, el cliente en primera instancia se dispone a comunicarse con el servidor, le manda un mensaje con la contraseña anteriormente 
+vista y si coincide el servidor le manda un respuesta de que todo ha ido bien, el cliente al recibir dicho mensaje le manda las métricas al servidor, una vez recibidas el servidor las parsea y las almacena en 
+InfluxDB con un timestamp, por último si todo ha ido correctamente el cliente le manda un mensaje al servidor pàra cerrar la comunicación. \\ 
 
 
 \section{Cliente}
