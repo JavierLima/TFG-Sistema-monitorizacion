@@ -65,13 +65,13 @@ En cambio, si desde un principio supiésemos la salud del sistema, cuanto porcen
 paralelamente, podríamos adelantarnos a posibles incidencias y no saturar los sistemas de recursos o por el contrario darnos cuenta que deberíamos 
 aprovechar más los recursos del sistema.\\
 
-Tener monitorizado tus propios sistemas es una obligación para mantener la calidad de servicio, es un plus que cualquier cliente se sentería satisfecho, no solo hay 
+Tener monitorizado tus propios sistemas es una obligación para mantener la calidad de servicio, es un plus que cualquier cliente se sentiría satisfecho, no solo hay 
 que conformarse con elaborar una aplicación y ponerla a funcionar, hay que dejar preparadas ayudas que nos aporten valor por si ocurre alguna incidencia. No es fácil 
 determinar si las degradaciones o interrupciones de servicio se deben a la propia aplicación o a la infraestructura, por lo que es imprescindible disponer de información 
 de diagnóstico para descartar de forma rápida posibles orígenes. \\
 
 \section{Planteamiento del problema}
-Todo este tiempo en la universidad hemos desarrollado código para generar valor con aplicaciones o scripts, pero ¿cómo medimos 
+Todo este tiempo en la universidad hemos desarrollado código para generar valor con aplicaciones o \textit{scripts}, pero ¿cómo medimos 
 el rendimiento del sistema realmente?. Imaginemos que tenemos varias aplicaciones funcionando en una máquina, ¿como 
 podríamos saber si es posible ejecutar una nueva aplicación dentro del sistema?. Machmon, es un proyecto para poder valorar la salud de 
 un sistema, consiste en recoger métricas que nos aporten información sobre la salud de los
@@ -82,7 +82,7 @@ ordenadores (como la CPU, memoria RAM, disco, etc) y representarlas gráficament
 \section{Objetivos del trabajo}
 Como propósito este trabajo tendrá unos objetivos a cumplir:\\
 
-\subsection{Aumentar los conocientos de sistemas Linux}
+\subsection{Aumentar los conocimientos de sistemas Linux}
 Linux es uno de los sistemas más populares entre los desarrolladores, la consola que tiene facilita mucho la operación de esas 
 máquinas, además de su predominio absoluto en el mercado de servidores. Es por ello, que el uso de los sistemas Linux es fundamental.\\
 
@@ -164,7 +164,7 @@ La idea principal es desarrollar un modelo con una estructura compuesta por Mast
 \subsection{Recopilación de métricas}
 Actualmente existen infinidad de herramientas capaces de describir como es la salud de nuestros ordenadores, un ejemplo de ello son los plugins de telegraf que recogen métricas de todo tipo: cpu, disco, 
 memoria RAM, latencia, temperatura y muchas más. Estas herramientas funcionan de la misma manera, preguntando al ordenador, algunas con comandos más complejos y otros más sencillos, pero viendo la esencia 
-que tienen tan parecida sería posible desarrollar un script que recoja únicamente las métricas que necesitemos o incluso ir añadiendo nuevas métricas en un futuro.\\
+que tienen tan parecida sería posible desarrollar un \textit{script} que recoja únicamente las métricas que necesitemos o incluso ir añadiendo nuevas métricas en un futuro.\\
 
 \subsection{Generación de gráficas}
 Un aspecto fundamental es la visualización de las métricas que recojamos, si en un principio existían infinidad de herramientas para obtener las métricas, estamos ante lo mismo o más herramientas para poder visualizarlas. Cabe destacar que sería posible 
@@ -175,11 +175,11 @@ A continuación nombraré distintas herramientas, sus puntos fuertes y cuál de 
 
 \begin{enumerate}
    \item Cyfe: \\
-   De las más completas para crearte tu cuadro de mando avanzado. Puedes conectar un montón de fuentes diferentes y con una interfaz intuitiva. La posibilidad de redimensionar widgets rápidamente le da un plus de personalización bastante útil. 
+   De las más completas para crearse un cuadro de mando avanzado. Puedes conectar un montón de fuentes diferentes y con una interfaz intuitiva. La posibilidad de redimensionar widgets rápidamente le da un plus de personalización bastante útil. 
    \item Klipfolio: \\
    Es una herramienta analítica que da la posibilidad de ver una comparación de datos mensual para saber lo que se podría corregir.
    \item Clicdata: \\
-   Quizá tenga algunas limitaciones como cuadro de mandos general, pero su capacidad para resumir y crear grandes infografias de datos, es un añadido que pocas herramientas tienen. Como inconveniente cabe destacar que dispone de una limitación de espacio, su versión gratuita solo tiene habilitado 1 GB.
+   Quizá tenga algunas limitaciones como cuadro de mandos general, pero su capacidad para resumir y crear grandes infografías de datos, es un añadido que pocas herramientas tienen. Como inconveniente cabe destacar que dispone de una limitación de espacio, su versión gratuita solo tiene habilitado 1 GB.
    \item Qlik: \\
    Qlik es otra de las herramientas de creación de dashboards más recientes que tenemos. Pese a que anteriormente se la conocía como QlikView, la nueva versión es mucho más intuitiva, ofreciendo la posibilidad de medir la experiencia de usuario en un dashboard muy visual y ameno, adaptándose a todo tipo de segmentos.
    \item Sweetspot Intelligence: \\
@@ -194,12 +194,12 @@ A continuación nombraré distintas herramientas, sus puntos fuertes y cuál de 
 
 \section{Trabajos relacionados}
 
-Una de las partes más importantes en la infraestructura es la monitorización, es por ello que es necesario una investigación previa de las monitorizaciones existentes en el mercado. Destacan en su mayoría por generar un end to end donde el cliente solo necesite 
+Una de las partes más importantes en la infraestructura es la monitorización, es por ello que es necesario una investigación previa de las monitorizaciones existentes en el mercado. Destacan en su mayoría por generar un \textit{end to end} donde el cliente solo necesite 
 identificar que es lo que quiere monitorizar y como lo quiere hacer. Para ello existen diversas opciones.
 
 \subsection{Prometheus}
 
-Prometheus es un sistema de monitorización y de alerta open source creado en 2012 por la compañía SoundCloud. En su principio fue revolucionaria hasta tal punto que hoy en día se sigue utilizando en grandes empresas. Su utilidad se basa en registrar métricas en tiempo 
+Prometheus es un sistema de monitorización y de alerta \textit{open source} creado en 2012 por la compañía SoundCloud. En su principio fue revolucionaria hasta tal punto que hoy en día se sigue utilizando en grandes empresas. Su utilidad se basa en registrar métricas en tiempo 
 real en una base de datos de series de tiempo construida usando un modelo de extracción HTTP, que es un estilo de comunicación de red en el que la solicitud inicial de datos se origina en el cliente y luego es respondida por el servidor. \\
 
 El ecosistema de Prometheus consiste de varios componentes:
@@ -210,7 +210,7 @@ El ecosistema de Prometheus consiste de varios componentes:
    \item Un sistema de manejo de alarmado. 
 \end{itemize}
 
-Prometheus básicamente almacena todos los datos como series temporales. Cada serie de tiempo se identifica de forma única por su nombre identificativo y un conjunto de pares clave-valor, también conocidos como ``labels''. \\
+Prometheus básicamente almacena todos los datos como series temporales. Cada serie de tiempo se identifica de forma única por su nombre identificativo y un conjunto de pares clave-valor, también conocidos como \textit{``labels''}. \\
 
 \begin{figure}[!h]
    \centering
@@ -241,7 +241,7 @@ los conocimientos que surjan, alertas específicas para problemas críticos y ac
       \caption{\label{fig: Arquitectura de Datadog} Arquitectura de Datadog}
 \end{figure}
 
-Datadog también se integra con varias herramientas de software de nube, empresa y desarrollador listas para usar, por lo que los flujos de trabajo establecidos del equipo no se modificarán ni se interrumpirán al adoptar el servicio de Datadog.\\
+Datadog también se integra con varias herramientas de \textit{software} de nube, empresa y desarrollador listas para usar, por lo que los flujos de trabajo establecidos del equipo no se modificarán ni se interrumpirán al adoptar el servicio de Datadog.\\
 
 \subsection{Graphite}
 
@@ -280,8 +280,8 @@ una de las fases, las cuáles son:
 \end{itemize}
 
 De forma excepcional, cabe destacar que como punto de continuidad y como procedimiento para llevar un control del trabajo de fin de grado, se ha realizado el desarrollo bajo la inclusión de la 
-metodología ``agile Scrum". Scrum es un marco de trabajo para desarrollo ágil de software que se ha expandido a otras industrias. Es un proceso en el que se aplican de manera regular un conjunto 
-de buenas prácticas para trabajar colaborativamente, en equipo y obtener el mejor resultado posible de proyectos. Aunque sea una metodología colaborativa, se ha realizado individualmente, se han organizado 
+metodología \textit{``agile Scrum"}. Scrum es un marco de trabajo para desarrollo ágil de \textit{software} que se ha expandido a otras industrias. Es un proceso en el que se aplican de manera regular un conjunto 
+de buenas prácticas para trabajar colaborativamente en equipo y obtener el mejor resultado posible de proyectos. Aunque sea una metodología colaborativa, se ha realizado individualmente, se han organizado 
 reuniones a modo de reviews, entregas en forma de fin de sprints y plannings para priorizar las tareas más importantes.\\
 
 \section{Tecnologías empleadas}
@@ -290,27 +290,27 @@ En la actualidad hay multitud de herramientas, facilitan el trabajo si se conoce
 A continuación se mostrarán todas las tecnologías utilizadas.\\
 
 \subsection{Docker}
-Un contenedor es una unidad de software estándar que empaqueta el código y todas sus dependencias para que la aplicación 
+Un contenedor es una unidad de \textit{software} estándar que empaqueta el código y todas sus dependencias para que la aplicación 
 se ejecute de manera rápida y confiable de un entorno informático a otro. Una imagen de contenedor Docker es un paquete 
-de software, independiente, gestionable y que incluye todo lo necesario para ejecutar una aplicación: código, tiempo 
+de \textit{software}, independiente, gestionable y que incluye todo lo necesario para ejecutar una aplicación: código, tiempo 
 de ejecución, herramientas del sistema, bibliotecas del sistema y configuraciones.\\
 
 Las imágenes de docker se convierten en contenedores en tiempo de ejecución y, en el caso de los contenedores Docker, 
 las imágenes se convierten en contenedores cuando se ejecutan en Docker Engine. Disponible para aplicaciones basadas en 
-Linux y Windows, el software en contenedores siempre se ejecutará igual, independientemente de la infraestructura. Los 
-contenedores aíslan el software de su entorno y aseguran que funcione de manera uniforme a pesar de las diferencias, por 
+Linux y Windows, el \textit{software} en contenedores siempre se ejecutará igual, independientemente de la infraestructura. Los 
+contenedores aíslan el \textit{software} de su entorno y aseguran que funcione de manera uniforme a pesar de las diferencias, por 
 ejemplo, entre el desarrollo y la puesta en escena.\\
 
 La tecnología de contenedores Docker se lanzó en 2013 como un motor Docker de código abierto. Aprovechó los conceptos 
 informáticos existentes en torno a los contenedores y específicamente en el mundo de Linux, primitivas conocidas como 
-cgroups y espacios de nombres. La tecnología de Docker es única porque se centra en los requisitos de los desarrolladores 
+``cgroups'' y espacios de nombres. La tecnología de Docker es única porque se centra en los requisitos de los desarrolladores 
 y operadores de sistemas para separar las dependencias de las aplicaciones de la infraestructura.
 El éxito en el mundo de Linux impulsó una asociación con Microsoft que llevó los contenedores Docker y su funcionalidad 
 a Windows Server.\\ \\ \\
 
 \textbf{Comparación entre contenedores y máquinas virtuales}\\
 Los contenedores y las máquinas virtuales tienen beneficios similares de aislamiento y asignación de recursos, pero 
-funcionan de manera diferente porque los contenedores virtualizan el sistema operativo en lugar del hardware. 
+funcionan de manera diferente porque los contenedores virtualizan el sistema operativo en lugar del \textit{hardware}. 
 Los contenedores son más portátiles y eficientes.\\
 
 Los contenedores son una abstracción en la capa de la aplicación que agrupa el código y las dependencias juntas. 
@@ -326,8 +326,8 @@ pueden manejar más aplicaciones y requieren menos máquinas virtuales y sistema
 \end{figure}
 
 
-En cambio, las máquinas virtuales (VM) son una abstracción del hardware físico que convierte un servidor en muchos 
-servidores. El hipervisor permite que varias máquinas virtuales se ejecuten en una sola máquina. Cada VM incluye una 
+En cambio, las máquinas virtuales (VM) son una abstracción del \textit{hardware} físico que convierte un servidor en muchos 
+servidores. El ``hipervisor'' permite que varias máquinas virtuales se ejecuten en una sola máquina. Cada VM incluye una 
 copia completa de un sistema operativo, la aplicación, los binarios y bibliotecas necesarias, que ocupan decenas de GB. 
 Las máquinas virtuales también pueden ser lentas para arrancar.\\
 
@@ -341,11 +341,11 @@ Las máquinas virtuales también pueden ser lentas para arrancar.\\
 
 \subsection{Protocol buffers}
 Protobuffer diseñado internamente por Google, es una herramienta que nos permite generar protocolos de comunicaciones o estructuras de mensajes para facilitar al usuario las comunicaciones, a través de la serialización de mensajes.
-La serialización es un proceso de codificación de un objeto en un medio de almacenamiento, como puede ser una archivo o un buffer en memoria, en ocasiones para transmitirlo a través de una conexión de red o para preservarlo entre ejecuciones 
+La serialización es un proceso de codificación de un objeto en un medio de almacenamiento, como puede ser un archivo o un \textit{buffer} en memoria, en ocasiones para transmitirlo a través de una conexión de red o para preservarlo entre ejecuciones 
 de un programa. La serie de bytes que codifican el estado del objeto tras la serialización puede ser usada para crear un nuevo objeto, idéntico al original, tras aplicar el proceso inverso de deserialización. Además, dispone de un compilador que 
 te permite una vez hecho el esquema de la estructura de datos codificarlo en distintos lenguajes; C++, Java, python, Objective-C y con la versión proto3 se puede trabajar con: Dart, Go, Ruby y C. \\ 
 
-Según la página oficial de Google, los buffers de protocolo son el mecanismo extensible de lenguaje neutral, plataforma neutral para serializar datos estructurados; como en XML, pero más pequeño, más rápido y más simple. Uno define cómo desea que se 
+Según la página oficial de Google, los \textit{buffers} de protocolo son el mecanismo extensible de lenguaje neutral, plataforma neutral para serializar datos estructurados; como en XML, pero más pequeño, más rápido y más simple. Uno define cómo desea que se 
 organicen los datos una vez, luego puede usar un código fuente generado especial para escribir y leer fácilmente sus datos estructurados hacia y desde una variedad de flujos de datos y usando una variedad de lenguajes. \\
 
 \begin{figure}[!h]
@@ -403,7 +403,7 @@ integración continua con Git y mucho más. \\
 
 \subsection{Python}
 Python es un lenguaje de programación interpretado cuya filosofía hace hincapié en la legibilidad de su código. Creado por Guido van Rossum y lanzado por primera vez en 1991, sus construcciones de lenguaje y su enfoque orientado a objetos tienen como objetivo ayudar a los 
-programadores a escribir código claro y lógico para proyectos a pequeña y gran escala. Admite múltiples paradigmas de programación , incluida la programación estructurada, orientada a objetos y funcional. \\
+programadores a escribir código claro y lógico para proyectos a pequeña y gran escala. Admite múltiples paradigmas de programación, incluída la programación estructurada, orientada a objetos y funcional. \\
 
 \begin{figure}[!h]
    \centering
@@ -414,7 +414,7 @@ programadores a escribir código claro y lógico para proyectos a pequeña y gra
 Es administrado por la Python Software Foundation y posee una licencia de código abierto, denominada Python Software Foundation License.\\
 \subsection{Ubuntu}
 
-Ubuntu es un sistema operativo de software libre y código abierto, una distribución de Linux basada en Debian. Actualmente corre en computadores de escritorio y servidores. Además, está orientado al usuario promedio, con un fuerte enfoque en la facilidad de uso y 
+Ubuntu es un sistema operativo de \textit{software} libre y código abierto, una distribución de Linux basada en Debian. Actualmente corre en computadores de escritorio y servidores. Además, está orientado al usuario promedio, con un fuerte enfoque en la facilidad de uso y 
 en mejorar la experiencia del usuario.\\
 
 \begin{figure}[!h]
@@ -423,13 +423,13 @@ en mejorar la experiencia del usuario.\\
       \caption{\label{fig: Logo ubuntu} Logo ubuntu}
 \end{figure}
 
-Ubuntu incluye lo mejor en traducción e infraestructura de accesibilidad que la comunidad de Software Libre tiene para ofrecer, para que Ubuntu pueda ser utilizado por la mayor cantidad de personas posible. Dicho sistema es gratuito, no hay una tarifa adicional 
-para la "edición empresarial", ya que está totalmente comrometido con los principios de desarrollo de código abierto; alentan a las personas a usar software de código abierto, mejorarlo y transmitirlo. \\
+Ubuntu incluye lo mejor en traducción e infraestructura de accesibilidad que la comunidad de \textit{software} libre tiene para ofrecer, para que Ubuntu pueda ser utilizado por la mayor cantidad de personas posible. Dicho sistema es gratuito, no hay una tarifa adicional 
+para la "edición empresarial", ya que está totalmente comprometido con los principios de desarrollo de código abierto; alientan a las personas a usar \textit{software} de código abierto, mejorarlo y transmitirlo. \\
 
 \subsection{Bash}
 
-Es un lenguaje de comandos y shell de Unix, te permite programar sentencias que causan acciones. En este caso lee y ejecuta comandos desde un archivo, llamado script. Cuando se inicia Bash, ejecuta los comandos en una variedad de archivos de puntos, es similar a los 
-comandos de script de shell Bash, que tienen permiso de ejecución habilitado y una directiva de intérprete como cabecera \textbf{$\#$!/bin/bash}. \\
+Es un lenguaje de comandos y shell de Unix, te permite programar sentencias que causan acciones. En este caso lee y ejecuta comandos desde un archivo, llamado \textit{script}. Cuando se inicia Bash, ejecuta los comandos en una variedad de archivos de puntos, es similar a los 
+comandos de \textit{script} de shell Bash, que tienen permiso de ejecución habilitado y una directiva de intérprete como cabecera \textbf{$\#$!/bin/bash}. \\
 
 \begin{figure}[!h]
    \centering
@@ -438,7 +438,7 @@ comandos de script de shell Bash, que tienen permiso de ejecución habilitado y 
 \end{figure}
 
 \subsection{Nano}
-Nano es un editor de texto para sistemas Unix basado en curses, que es una biblioteca para el control de terminales sobre sistemas de tipo Unix, posibilitando la construcción de una interfaz para el usuario, para aplicaciones ejecutadas en un terminal. Esta escrito en C y es un clon de Pico, 
+Nano es un editor de texto para sistemas Unix basado en \textit{curses}, que es una biblioteca para el control de terminales sobre sistemas de tipo Unix, posibilitando la construcción de una interfaz para el usuario, para aplicaciones ejecutadas en un terminal. Esta escrito en C y es un clon de Pico, 
 el editor del cliente de correo electrónico Pine. Nano trata de emular la funcionalidad y la interfaz de fácil manejo de Pico, pero sin la integración con Pine. \\
 
 \begin{figure}[!h]
@@ -448,7 +448,7 @@ el editor del cliente de correo electrónico Pine. Nano trata de emular la funci
 \end{figure}
 
 \subsection{Git}
-Git es un software de control de versiones, pensando en la eficiencia y la confiabilidad del mantenimiento de versiones de aplicaciones cuando éstas tienen un gran número de archivos de código fuente. Permite que varias personas puedan trabajar en el mismo proyecto sin pisarse los unos en los otros, 
+Git es un \textit{software} de control de versiones, pensando en la eficiencia y la confiabilidad del mantenimiento de versiones de aplicaciones cuando éstas tienen un gran número de archivos de código fuente. Permite que varias personas puedan trabajar en el mismo proyecto sin pisarse los unos en los otros, 
 además del control que te aporta sobre tu código, es capaz de volver a versiones anteriores del código. \\
 
 \begin{figure}[!h]
@@ -467,8 +467,8 @@ La comunidad utiliza con frecuencia git, hay varias variantes como gitlab o gith
 
 \subsection{Visual Studio Code}
 Visual Studio Code es un editor de código fuente desarrollado por Microsoft para Windows, Linux y macOS. Incluye soporte para la depuración, control integrado de Git, resaltado de sintaxis, finalización inteligente de código, fragmentos y refactorización de código. También es personalizable, 
-por lo que los usuarios pueden cambiar el tema del editor, los atajos de teclado y las preferencias. Es gratuito y de código abierto, aunque la descarga oficial está bajo software privativo e incluye características personalizadas por Microsoft. Visual Studio Code se basa en 
-Electron, un framework que se utiliza para implementar Chromium y Node.js como aplicaciones para escritorio, que se ejecuta en el motor de diseño Blink. \\
+por lo que los usuarios pueden cambiar el tema del editor, los atajos de teclado y las preferencias. Es gratuito y de código abierto, aunque la descarga oficial está bajo \textit{software} privativo e incluye características personalizadas por Microsoft. Visual Studio Code se basa en 
+Electron, un \textit{framework} que se utiliza para implementar Chromium y Node.js como aplicaciones para escritorio, que se ejecuta en el motor de diseño Blink. \\
 
 \begin{figure}[!h]
    \centering
@@ -491,7 +491,7 @@ las cuales ya lo emplean. \\
 \end{figure}
 
 \chapter{Desarrollo del trabajo}
-Para empezar, es necesario tener claro la aspiración del trabajo, saber la salud de los sistemas. Para ello se ha desarrollado un script en bash capaz de obtener métricas de todo tipo: cpu, 
+Para empezar, es necesario tener claro la aspiración del trabajo, saber la salud de los sistemas. Para ello se ha desarrollado un \textit{script} en bash capaz de obtener métricas de todo tipo: cpu, 
 RAM, disco, etc e introducirlas en un archivo JSON. En la figura 5.1 se puede observar el resultado final de todas las métricas recogidas insertadas en dicho JSON. \\
 
 \begin{figure}[!h]
@@ -767,10 +767,10 @@ Nombre de la métrica: \textbf{systemAdditionalInfo}
 
 \hyp{} systemLoadAverage5M: promedio de carga del sistema durante los últimos 5 minutos. (float)
 
-\hyp{} systemLoadAverage15M: promedio de carga del sistema durante los últimos 15 minutos. (float)
+\hyp{} systemLoadAverage15M: promedio de carga del sistema durante los últimos 15 minutos. (float)\\
 
 Una vez obtenidas las métricas, hay que almacenarlas en una base de datos. Para ello, hay que plantearse el cómo hacerlo, ¿qué forma 
-sería la más eficiente? ¿quá cada sistema se pueda conectar a la base de datos para almacenarlas o solo una entidad es la encargada 
+sería la más eficiente? ¿qué cada sistema se pueda conectar a la base de datos para almacenarlas o solo una entidad es la encargada 
 de introducirlas?. Por seguridad y por acoplamiento es mejor que solo una entidad sea capaz de almacenar las métricas, independientemente 
 del tipo de sistema que sea.\\
 
@@ -780,7 +780,7 @@ hacer un protocolo de comunicaciones para que se entiendan en todo momento el se
 
 \section{Script en bash}
 
-Es un script capaz de recoger todas las métricas anteriormente nombradas en el apartado 5.1 ``Estándares de métricas". Bash te permite programar en función de comandos, 
+Es un \textit{script} capaz de recoger todas las métricas anteriormente nombradas en el apartado 5.1 ``Estándares de métricas". Bash te permite programar en función de comandos, 
 el uso de esos comandos nos obliga a seguir su orden y sintaxis, es por ello que con ciertos comandos, se ejecuta un filtrado para solo obtener las variables que necesitamos o 
 como en todos los comandos eliminar aquello que nos de ruido con la ayuda de ``grep'', ``tail'', ``sed'', ``awk'', ``cut'' o ``tr''.\\
 
@@ -799,7 +799,7 @@ en la figura 5.3. \\
       \caption{\label{fig: Preparación de variables} Preparación de variables}
 \end{figure}
 
-Por último, una vez ya filtrado los comandos y preparadas las variables con un orden preestablecido, el script se encarga de insertar todo las métricas recogidas en un JSON, como se 
+Por último, una vez ya filtrado los comandos y preparadas las variables con un orden preestablecido, el \textit{script} se encarga de insertar todo las métricas recogidas en un JSON, como se 
 puede observar en la figura 5.4. \\ 
 
 \begin{figure}[!h]
@@ -810,10 +810,10 @@ puede observar en la figura 5.4. \\
 
 \section{Servidor}
 
-El servidor está desarrollado en python, en la versión 3.7. En primer lugar, el servidor se encarga de setear su propia configuración según un json 
-que permite actualizar la dirección IP, el puerto o el tamaño del buffer para el control de las comunicaciones, también te permite controlar que sistemas puden 
+El servidor está desarrollado en python, en la versión 3.7. En primer lugar, el servidor se encarga de setear su propia configuración según un JSON 
+que permite actualizar la dirección IP, el puerto o el tamaño del buffer para el control de las comunicaciones, también permite controlar que sistemas pueden 
 comunicarse con el servidor, un plus de seguridad que solo deja conectarse con máquinas ya conocidas, además setea la contraseña por la cuál se conectan los clientes 
-al servidor y por el último los formatos elegidos para el sistema de logs que dispone el servidor, el sistema de logs es simplemente para tener un control de errores, 
+al servidor y por último los formatos elegidos para el sistema de logs que dispone el servidor, el sistema de logs es simplemente para tener un control de errores, 
 en el caso de que algo falle en el sistema quedará reflejado en un archivo aparte llamado SystemMetrics-Server.log.\\
 
 
@@ -825,16 +825,16 @@ en el caso de que algo falle en el sistema quedará reflejado en un archivo apar
 
 Dicho servidor siempre está funcionando, en el momento que haya sido ejecutado entrará en un bucle de donde no podrá salir hasta que un usuario pare la ejecución. 
 En primer lugar prepara el socket por el cuál permitirá la comunicación y una vez hecho eso entra en un bucle infinito con el siguiente algoritmo; aceptamos una comunicación 
-entrante (a través de una línea bloqueante que nos la da la líbrería "socket") y se la derivamos a un thread, con esto permitimos que haya concurrencia y en el caso de que 
-otro cliente quiera comunicarse con el servidor podrá dicho servidor lanzar otro thread para que se comuniquen. Además cada conexión entrante tiene un timeout, es decir solo podrán 
+entrante (a través de una línea bloqueante que nos la da la líbrería "socket") y se la derivamos a un \textit{thread}, con esto permitimos que haya concurrencia y en el caso de que 
+otro cliente quiera comunicarse con el servidor podrá dicho servidor lanzar otro \textit{thread} para que se comuniquen. Además cada conexión entrante tiene un \textit{timeout}, es decir solo podrán 
 comunicarse por un período de tiempo, en este caso 120 segundos. \\
 
-El servidor dispone de un bucle infinito que funciona como una espera activa hasta que llegue un mensaje, esto derivará en la creación de un thread para encargarse de la comunicación. Cuando un thread 
+El servidor dispone de un bucle infinito que funciona como una espera activa hasta que llegue un mensaje, esto derivará en la creación de un \textit{thread} para encargarse de la comunicación. Cuando un \textit{thread}
 es creado se pone a la escucha de nuevos mensajes, en donde solo hay 3 posibles mensajes: un mensaje de respuesta que da el servidor para avisar a los clientes de que la primera comunicación ha ido bien, 
-un segundo mensaje que contiene las métricas, por lo tanto cada thread trata dichas métricas y las almacena en una base de datos de series de tiempo llamada InfluxDB y por último un mensaje para cercionarse 
+un segundo mensaje que contiene las métricas, por lo tanto cada \textit{thread} trata dichas métricas y las almacena en una base de datos de series de tiempo llamada InfluxDB y por último un mensaje para cercionarse 
 de que se cierran las conexiones con los clientes. Siempre ocurre el mismo algoritmo, el cliente en primera instancia se dispone a comunicarse con el servidor, le manda un mensaje con la contraseña anteriormente 
-vista y si coincide el servidor le manda un respuesta de que todo ha ido bien, el cliente al recibir dicho mensaje le manda las métricas al servidor, una vez recibidas el servidor las parsea y las almacena en 
-InfluxDB con un timestamp, por último si todo ha ido correctamente el cliente le manda un mensaje al servidor pàra cerrar la comunicación. \\ 
+vista y si coincide el servidor le manda una respuesta de que todo ha ido bien, el cliente al recibir dicho mensaje le manda las métricas al servidor, una vez recibidas el servidor las parsea y las almacena en 
+InfluxDB con un \textit{timestamp}, por último si todo ha ido correctamente el cliente le manda un mensaje al servidor para cerrar la comunicación. \\ 
 
 
 \section{Cliente}
@@ -850,7 +850,7 @@ de un solo tipo pudiésemos. \\
 \end{figure}
 
 Una vez el cliente se ha seteado, se prepara para empezar la comunicación con el servidor. En primer lugar, le manda un mensaje con la contraseña y se pone a la espera de la respuesta del servidor, si todo ha ido bien 
-ejecuta un script en bash que calcula las métricas del sistema y las introduce en un JSON, una vez generado el JSON lee las métricas del archivo y crea el mensaje con ellas para mandarlas al servidor. Por último, corta la comunicación 
+ejecuta un \textit{script} en bash que calcula las métricas del sistema y las introduce en un JSON, una vez generado el JSON lee las métricas del archivo y crea el mensaje con ellas para mandarlas al servidor. Por último, corta la comunicación 
 con el servidor para que la próxima vez que vaya a mandar métricas empiece el algoritmo desde cero. \\
 
 \section{Generación de logs}
@@ -874,7 +874,7 @@ se va especificando que fallos pueden ocasionarse. En este sistema disponemos de
 \begin{itemize}
    \item Que no se haya podido insertar en la base de datos.
    \item Que no exista conexión previa con el cliente, es decir que haya pasado por alto un paso.
-   \item Que el host que se intente conectar no lo tenga contemplado el servidor, que no esté en los hosts permitidos.
+   \item Que el \textit{host} que se intente conectar no lo tenga contemplado el servidor, que no esté en los \textit{hosts} permitidos.
    \item Que se mande un mensaje de establecer conexión cuando ya están conectados.
    \item Que la clave de seguridad al empezar una comunicación sea incorrecta.
 \end{itemize}
@@ -935,8 +935,8 @@ de vuelta que ejecuta el servidor. \\
       \caption{\label{fig: Tipos básicos de mensaje} Tipos básicos de mensaje}
 \end{figure}
 
-Por último, la estructura de mensaje que dispone de las métricas, llamada ``SystemMetric'' que se puede observar en la figura 5.14. Esta estructura de mensaje dispone de un string que define el tipo de métricas que recibe: ubuntu, raspbian y 
-en el caso de que se inserten nuevos sistemas el tipo que las define; por otro lado un timestamp de la hora a la que se mandó el mensaje, dicho timestamp es obligatorio con el trato de InfluxDB, la base de datos de series temporales y finalmente todas las 
+Por último, la estructura de mensaje que dispone de las métricas, llamada ``SystemMetric'' que se puede observar en la figura 5.14. Esta estructura de mensaje dispone de un \textit{string} que define el tipo de métricas que recibe: ubuntu, raspbian y 
+en el caso de que se inserten nuevos sistemas el tipo que las define; por otro lado un \textit{timestamp} de la hora a la que se mandó el mensaje, dicho \textit{timestamp} es obligatorio con el trato de InfluxDB, la base de datos de series temporales y finalmente todas las 
 métricas que se recogen de los clientes, dichas métricas están definidas y detalladas en el apartado 5.1 ``Estándares de métricas''. En el caso de que una métrica no se pueda recoger, se seteará al valor 0 por defecto.\\
 
 \begin{figure}[!h]
@@ -951,7 +951,7 @@ y las dependencias juntas. Se pueden ejecutar varios contenedores en la misma m�
 procesos aislados en el espacio del usuario. \\
 
 Para ello, generamos un archivo llamado ``docker-compose.yml'', dicho archivo es una herramienta que permite simplificar el uso de Docker. A partir de archivos YAML es mas sencillo crear contendores, 
-conectarlos, habilitar puertos, volumenes, etc. En vez de utilizar Docker via una serie inmemorizable de comandos bash y scripts, Docker Compose te permite mediante archivos YAML para poder instruir al 
+conectarlos, habilitar puertos, volumenes, etc. En vez de utilizar Docker via una serie inmemorizable de comandos bash y \textit{scripts}, Docker Compose te permite mediante archivos YAML para poder instruir al 
 Docker Engine a realizar tareas, programáticamente. Y esta es la clave, la facilidad para dar una serie de instrucciones, y luego repetirlas en diferentes ambientes.\\
 
 El archivo YAML dispone de varios servicios, por lo tanto, vamos a subdividirlo en secciones para hablar sobre cada una de ellos. 
@@ -969,7 +969,7 @@ Como se puede apreciar en la figura 5.15, el servidor dispone de unas configurac
 Este docker se llama ``server-metrics'' y siempre que ocurra un error interno se reiniciará el docker, esto nos permite evitar 
 tener que solucionar posibles fallos que pueda dar la aplicación, además la imagen de docker se va a construir en función de un Dockerfile (un archivo de configuración interno de Docker) como se puede observar en la figura 5.16, se trata de una configuración básica 
 por no decir sencilla, solo se encarga de generar el entorno de python donde va a trabajar, copiar archivos de configuración a la raíz de la máquina, instalar las dependencias de las librerías de python, que en este caso son las librería de influx y de ProtocolBuffer, y actualizar 
-la máquina con un update. \\ 
+la máquina con un \textit{update}. \\ 
 
 \begin{figure}[!h]
    \centering
@@ -977,7 +977,7 @@ la máquina con un update. \\
       \caption{\label{fig: Dockerfile del servidor} Dockerfile del servidor}
 \end{figure}
 
-La imagen docker del servidor necesita que le especifiquemos un ``entrypoint'', que simplemente es un script en bash para explicarle el proceso o los procesos que se va a encargar de hacer, en este caso simplemente ejecuta el script del servidor (python server.py) que está 
+La imagen docker del servidor necesita que le especifiquemos un \textit{``entrypoint''}, que simplemente es un \textit{script} en bash para explicarle el proceso o los procesos que se va a encargar de hacer, en este caso ejecuta el \textit{script} del servidor (python server.py) que está 
 escrito en python. Asimismo, especificamos donde queremos que trabaje la máquina, es decir, en que carpeta, la carpeta ``server-metrics'' dispone de todos los archivos necesarios para que pueda trabajar el servidor sin que ocurra fallos, dichos archivos se pueden observar en la figura 5.17.\\
 
 \begin{figure}[!h]
@@ -999,10 +999,10 @@ Como se observa en la figura 5.18, el cliente dispone de unas configuraciones ba
       \caption{\label{fig: Configuración del cliente en docker} Configuración del cliente en docker}
 \end{figure}
 
-Este docker se llama ``client-cron-metrics'' y siempre que ocurra un error interno se reiniciará el docker, esto nos permite evitar 
+Este contenedor se llama ``client-cron-metrics'' y siempre que ocurra un error interno se reiniciará el docker, esto nos permite evitar 
 tener que solucionar posibles fallos que pueda dar la aplicación, además la imagen de docker se va a construir en función de un Dockerfile (un archivo de configuración interno de Docker) como se puede observar en la figura 5.19, se trata de una configuración básica 
 solo se encarga de generar el entorno de python donde va a trabajar, copiar archivos de configuración a la raíz de la máquina, instalar las dependencias de las librerías de python, que en este caso es la librería de ProtocolBuffer, instalar un par de progamas que nos ayudan a recoger métricas, y actualizar 
-la máquina con un update. \\
+la máquina con un \textit{update}. \\
 
 \begin{figure}[!h]
    \centering
@@ -1010,8 +1010,8 @@ la máquina con un update. \\
       \caption{\label{fig: Dockerfile del cliente} Dockerfile del cliente}
 \end{figure}
 
-La imagen docker del cliente necesita que le especifiquemos un ``entrypoint'', que simplemente es un script en bash para explicarle el proceso o los procesos que se va a encargar de hacer, en este caso simplemente ejecuta el script del cliente (python client.py) que está 
-escrito en python. Asimismo, especificamos donde queremos que trabaje la máquina, es decir, en que carpeta, la carpeta ``client-cron-metrics'' dispone de todos los archivos necesarios para que pueda trabajar el servidor sin que ocurra fallos, dichos archivos se pueden observar en la figura 5.20.\\
+La imagen docker del cliente necesita que le especifiquemos un ``entrypoint'', que simplemente es un \textit{script} en bash para explicarle el proceso o los procesos que se va a encargar de hacer, en este caso ejecuta el \textit{script} del cliente (python client.py) que está 
+escrito en python. Asimismo, especificamos donde queremos que trabaje la máquina, es decir, en que carpeta, la carpeta ``client-cron-metrics'' dispone de todos los archivos necesarios para que pueda trabajar el servidor sin que ocurran fallos, dichos archivos se pueden observar en la figura 5.20.\\
 
 \begin{figure}[!h]
    \centering
@@ -1019,8 +1019,8 @@ escrito en python. Asimismo, especificamos donde queremos que trabaje la máquin
       \caption{\label{fig: Archivos del cliente} Archivos del cliente}
 \end{figure}
 
-Especificamos que este contenedor depende del de ``server-metrics'' ya que no puede inicializarse este docker primero, generaría problemas de comunicación, el cliente se comunica con el servidor, si mandamos un mensaje desde el cliente antes de que se inicie el servidor ocurriría un timeout y perderíamos esa primera comunicación. 
-Para concluir, en este docker se especifica un volumen, cuando un contenedor es borrado, toda la información contenida en él, desaparece, dejamos de tener almacenamiento persistente en nuestros contenedores, es decir, que no se elimine al borrar el contenedor, es necesario utilizar volúmenes de datos, 
+Especificamos que este contenedor depende del de ``server-metrics'' ya que no puede inicializarse este docker primero, generaría problemas de comunicación, el cliente se comunica con el servidor, si mandamos un mensaje desde el cliente antes de que se inicie el servidor ocurriría un \textit{timeout} y perderíamos esa primera comunicación. 
+Para concluir, en este contenedor se especifica un volumen, cuando un contenedor es borrado, toda la información contenida en él, desaparece, dejamos de tener almacenamiento persistente en nuestros contenedores, es decir, que no se elimine al borrar el contenedor, es necesario utilizar volúmenes de datos, 
 dichos datos en un cliente no aportan mucho, pero a la hora de recoger los logs nos interesa que no se borren.\\
 
 \subsection{Docker de la base de datos}
@@ -1037,7 +1037,7 @@ hostname, este hostname no nos servirá para comunicarnos desde el servidor ya q
 el caso de que falle la base de datos, esta se reiniciará como método de contención ya que le pusimos un restart ``on-failure''. Además, se han seteado unas variables de entorno para garantizar el acceso a la base de datos como se observa en la imagen. Por último, la base de datos necesita un volumen para no perder ningún dato, la persistencia en las bases de 
 datos es fundamental y más cuando disponemos de ingestas cada dos minutos.\\
 
-Cabe destacar que el script del proceso del servidor es el que se encarga de generar la política de retención en la primera inserción que se haga, en este caso mensual, cada 30 días se van eliminando los datos recogidos, en el caso de que queramos aumentar o disminuir el tiempo de retención se podrían crear nuevas políticas. \\
+Cabe destacar que el \textit{script} del proceso del servidor es el que se encarga de generar la política de retención en la primera inserción que se haga, en este caso mensual, cada 30 días se van eliminando los datos recogidos, en el caso de que queramos aumentar o disminuir el tiempo de retención se podrían crear nuevas políticas. \\
 
 \begin{figure}[!h]
    \centering
@@ -1063,7 +1063,7 @@ los ficheros que copiemos a ese contenedor. Existen tres maneras distintas de ge
 ficheros almacenados en esa carpeta se borrarán y en cada corrida del contenedor comenzaremos con ese espacio vacío. \\
 
 Un volúmen es la manera sencilla y predefinida para almacenar todos los ficheros (salvo unas pocas excepciones) de un contenedor, usará el espacio de nuestro equipo real y en ``/var/lib/docker/volumes'' creará una carpeta para cada contenedor. En este trabajo se harán dos volúmenes como recursos externos, 
-lo que significa que ya se ha definido en Docker, en este caso mediante la consola de comandos con un create volume, como se observa en la figura 5.24.\\
+lo que significa que ya se ha definido en Docker, en este caso mediante la consola de comandos con un ``create volume'', como se observa en la figura 5.24.\\
 
 \begin{figure}[!h]
    \centering
@@ -1072,12 +1072,12 @@ lo que significa que ya se ha definido en Docker, en este caso mediante la conso
 \end{figure}
 
 \subsection{Redes internas}
-De forma predeterminada, Docker-Compose configura una única red para su aplicación. Cada contenedor que de un servicio se une a la red predeterminada y es accesible para otros contenedores en esa red y detectable por ellos con un nombre de host idéntico al nombre del contenedor.\\
+De forma predeterminada, Docker-Compose configura una única red para su aplicación. Cada contenedor que de un servicio se une a la red predeterminada y es accesible para otros contenedores en esa red y detectable por ellos con un nombre de \textit{host} idéntico al nombre del contenedor.\\
 
 En lugar de simplemente usar la red de aplicaciones predeterminada, se puede especificar las propias redes con la palabra clave ``networks'' que abstrae la red predeterminada a una de nivel superior. Esto permite crear topologías más complejas y especificar opciones y controladores de red personalizados. 
 También puede usarse para conectar servicios a redes creadas externamente que no son administradas por Docker-Compose. \\
 
-En este caso como se ve en la figura 5.25, se ha creado una red interna llamada monitoring que sirva como puente entre los contenedores, configurada con una máscara de red constituida por un rango de 24 que implica que puedan conectarse 255 máquinas.\\
+En este caso como se ve en la figura 5.25, se ha creado una red interna llamada ``monitoring'' que sirva como puente entre los contenedores, configurada con una máscara de red constituida por un rango de 24 que implica que puedan conectarse 255 máquinas.\\
 
 \begin{figure}[!h]
    \centering
@@ -1094,13 +1094,13 @@ Durante este apartado se expondrán diagramas que ayuden al entendimiento del si
       \caption{\label{fig: Diagrama de clases} Diagrama de clases}
 \end{figure}
 
-Como se observa en la figura 5.26, se aprecian 3 clases: el servidor, el cliente y el protocolo de comunicación. El servidor y el cliente fueron creados bajo el mismo diseño, se aprecia que ambas clases disponen de loggers para tener controlado los logs de los sistemas y una configuración dinámica. Describiendo primero en el servidor, se 
-ven 3 atributos y 6 funciones, de donde 2 públicas y 4 privadas; empezando por los atributos el servidor tiene una lista con todos los clientes conectados, un switch que permite identificar que tipo de mensaje recibe y un atributo llamado servidor que refleja la conexión con el socket por el cuál se comunica. En cuánto a 
+Como se observa en la figura 5.26, se aprecian 3 clases: el servidor, el cliente y el protocolo de comunicación. El servidor y el cliente fueron creados bajo el mismo diseño, se aprecia que ambas clases disponen de \textit{loggers} para tener controlado los logs de los sistemas y una configuración dinámica. Describiendo primero en el servidor, se 
+ven 3 atributos y 6 funciones, de donde 2 públicas y 4 privadas; empezando por los atributos el servidor tiene una lista con todos los clientes conectados, un \textit{switch} que permite identificar que tipo de mensaje recibe y un atributo llamado servidor que refleja la conexión con el \textit{socket} por el cuál se comunica. En cuánto a 
 sus funcionalidades, comenzando por las públicas, el servidor es capaz de empezar la secuencia de comunicaciones y generar hilos para que sean capaces de atender a los clientes. Continuando con las funcionalidades privadas, el servidor es capaz de: generar una respuesta al empezar una comunicación, cerrar una comunicación, 
 tratar los mensajes que reciben con los datos de las métricas y la construcción de puntos que se ingestarán en la base de datos. \\ 
 
-Por otro lado, el cliente dispone de 4 atributos privados además de los anteriormente nombrados, esos atributos son: un string con el camino que debe buscar el cliente para encontrar el archivo generado con 
-las métricas, un booleano que describe si estamos conectados o no, un string con el hostname del cliente y un atributo llamado cliente que refleja el socket por el cuál se va a comunicar con el servidor. En cuánto a sus funcionalidades, hay solo una que es pública que es la que se encarga con conectar con el servidor y 5 privadas  
+Por otro lado, el cliente dispone de 4 atributos privados además de los anteriormente nombrados, esos atributos son: un \textit{string} con el camino que debe buscar el cliente para encontrar el archivo generado con 
+las métricas, un booleano que describe si estamos conectados o no, un \textit{string} con el \textit{hostname} del cliente y un atributo llamado cliente que refleja el \textit{socket} por el cuál se va a comunicar con el servidor. En cuánto a sus funcionalidades, hay solo una que es pública que es la que se encarga con conectar con el servidor y 5 privadas  
 que se encargan de: empezar una comunicación, cerrar una comunicación, esperar la respuesta del servidor, preparar el mensaje que se a mandar y enviar las métricas obtenidas del sistema. \\ 
 
 Por último, hay que señalar que ambas clases, tanto el servidor como el cliente trabajan con una clase autogenerada por 
@@ -1114,7 +1114,7 @@ ProtocolBuffer para las comunicaciones, es por ello que existe una relación de 
 
 En la figura 5.27, se observa el diagrama de flujo de la aplicación, que es una representación gráfica que muestra como fluyen las acciones dentro del programa, sirve de ayuda para solucionar un problema de forma estructurada. Se aprecian 2 caminos, uno que hace referencia al flujo principal de la aplicación y el otro que funciona como 
 control de seguridad. En primer lugar, como mero trámite de seguridad se pide una clave para empezar la conexión con el servidor, si coincide continúa la comunicación, en cambio si no coinciden se rechaza la conexión y el cliente puede volver a intentar establecer conexión con el servidor cambiando la contraseña. Una vez empezada la comunicación, 
-el cliente sabe que la contraseña ha sido correcta por lo cuál puede proceder a obtener las métricas que residen en su sistema a través de un script en bash, que a su vez dicho script generará un JSON con todos los datos obtenidos. Una vez se tenga el fichero con los datos se enviará al servidor y éste se encargará de ingestar las métricas en la 
+el cliente sabe que la contraseña ha sido correcta por lo cuál puede proceder a obtener las métricas que residen en su sistema a través de un \textit{script} en bash, que a su vez dicho \textit{script} generará un JSON con todos los datos obtenidos. Una vez se tenga el fichero con los datos se enviará al servidor y éste se encargará de ingestar las métricas en la 
 base de datos. Por último, para llevar un control de los sistemas que están conectados con el servidor, éste se encarga de cerrar la comunicación con el cliente, para así se vuelva a desarrollar el flujo desde el principio. \\
 
 \begin{figure}[!h]
@@ -1124,7 +1124,7 @@ base de datos. Por último, para llevar un control de los sistemas que están co
 \end{figure}
 
 Como se aprecia en la figura 5.28 se ve el diagrama de la arquitectura del sistema. Empezando por los clientes, se deduce que uno está realizado en docker y el otro en una raspberry, en cambio ambos trabajan de la misma manera, se configuran solos con su JSON de configuración; a su vez tienen su archivo de logs donde van escribiendo lo que 
-sucede en todo momento dentro de la aplicación, tienen un script en bash que va a generar un JSON con las métricas obtenidas y una comunicación constante con el servidor a través del protocolo de comunicación. Ese mismo servidor encapsulado en docker se inicializa con un archivo de configuración y también va escribiendo en un fichero de logs lo que va sucediendo; además, 
+sucede en todo momento dentro de la aplicación, tienen un \textit{script} en bash que va a generar un JSON con las métricas obtenidas y una comunicación constante con el servidor a través del protocolo de comunicación. Ese mismo servidor encapsulado en docker se inicializa con un archivo de configuración y también va escribiendo en un fichero de logs lo que va sucediendo; además, 
 se encarga del control concurrente de mensajes que puedan llegar con el uso de hilos, que estos a su vez serán los encargados de introducir en la base de datos las métricas obtenidas, para su posterior tratamiento en el docker de Grafana, que a través de consultas se podrán visualizar las métricas. \\
 \newpage
 \section{Estudio de gráficas}
@@ -1138,7 +1138,7 @@ las gráficas realizadas según el tipo de métrica que es, como se observa en l
       \caption{\label{fig: Estructura de las graficas en Grafana} Estructura de las graficas en Grafana}
 \end{figure}
 
-Además, Grafana permite filtrar por hostnames, así cuando quieras ver la salud de uno de ellos sea más fácil.\\
+Además, Grafana permite filtrar por \textit{hostnames}, así cuando quieras ver la salud de uno de ellos sea más fácil.\\
 \subsection{CPU}
 
 \begin{figure}[!h]
@@ -1315,10 +1315,10 @@ se da la instrucción de monitorizar las máquinas en las que se encuentre la ap
 Otro factor importante es la toma de decisiones, él tener monitorizado las máquinas con anterioridad te permite preveer posibles incidencias, abaratar costes y tiempo. Te aporta un conocimiento detallado del rendimiento, además de estar todo supervisado por un técnico se pueden añadir alarmas que hagan que éste no esté tan pendiente de posibles picos de explotación.\\
 \section{Posibles mejoras}
 
-Este proyecto es superable, como se ha visto en el desarrollo del trabajo, monitorizar es algo necesario, por lo cuál podríamos ampliar nuestro abanico de máquinas. Al ser un sistema concurrente, él introducir una tercera máquina no sería un gran costo, en cambio, ambos clientes son sistemas Linux, es por ello que sería necesario desarrollar un script para Windows que 
+Este proyecto es superable, como se ha visto en el desarrollo del trabajo, monitorizar es algo necesario, por lo cuál podríamos ampliar nuestro abanico de máquinas. Al ser un sistema concurrente, él introducir una tercera máquina no sería un gran costo, en cambio, ambos clientes son sistemas Linux, es por ello que sería necesario desarrollar un \textit{script} para Windows que 
 genere las mismas métricas anteriormente comentadas. Al utilizar protobuffer, necesitaríamos compilar el sistema de comunicaciones para Windows y con ello tendríamos una clase autogenerada que nos permita realizar comunicaciones entre sistemas Linux y Windows.\\
 
-Otro punto a mejorar, es la posibilidad de introducir otro nuevos tipos de sistemas, un ejemplo de ello es arduino. En este caso, sería más costoso generar las comunicaciones ya que protobuffer no nos permite autogenerar clases con estos tipos de sistemas, aunque se podría generar un script capaz de sustituir la clase autogenerada de comunicaciones. Si incluyesemos estos 
+Otro punto a mejorar, es la posibilidad de introducir nuevos tipos de sistemas, un ejemplo de ello es arduino. En este caso, sería más costoso generar las comunicaciones ya que protobuffer no nos permite autogenerar clases con estos tipos de sistemas, aunque se podría generar un \textit{script} capaz de sustituir la clase autogenerada de comunicaciones. Si incluyesemos estos 
 tipos de sistemas podríamos incluso monitorizar con sensores, por ejemplo: la humedad relativa o la temperatura del ambiente en el que se encuentre el servidor. \\
 
 Algo llamativo es que se monitorice los clientes pero no el servidor. El servidor al encontrarse en un contenedor, él medir la cpu, la memoria RAM y todas las métricas anteriormente nombradas no tendría sentido, ya que los contenedores fueron creados con la idea de que el uso sea con el mínimo de recursos posibles, además de que las medidas obtenidas nos engañarían, ya que 
